@@ -17,12 +17,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: lightTheme(),
       darkTheme: darkTheme(),
+      themeMode: ThemeMode.light,
       initialRoute: '/',
       routes: {
-        '/':(context) => SplashScreen(),
+        '/':(context) =>  SplashScreen(),
         '/enterscreen':(context) => EnterScreen(),
         '/signup':(context) => SignUp(),
-        '/login':(context) => LogIn(),
+        '/login':(context) => Login(),
         '/home':(context) => Home()
 
 

@@ -1,3 +1,4 @@
+import 'package:codecraft/core/global/theme/app_colors/light_colors.dart';
 import 'package:codecraft/ui/wdigets/enter_screen_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,12 +20,13 @@ class _State extends State<EnterScreen> {
     final  double width=MediaQuery.of(context).size.width;
     final double height=MediaQuery.of(context).size.height;
     return Scaffold(
+      backgroundColor: LightThemeColors.purple,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
               Padding(
                 padding:  EdgeInsets.only(top:height*0.15,right: width*0.1,left: width*0.1,bottom: height*0.06),
-                child: Image.asset(logo,),
+                child: Image.asset(logoAllWhite,),
               ),
            Padding(
              padding:  EdgeInsets.only(left: width*0.095,right: width*0.095),
@@ -52,8 +54,8 @@ class _State extends State<EnterScreen> {
          const ERow(text: 'Over 20 Templates',icon: Icons.copy),
           const ERow(icon: Icons.file_download_outlined, text: 'Instant download'),
           const ERow(icon: CupertinoIcons.gear, text:'Fully Customaizable Cv'),
-          const EButton(text: 'log in',route: '/login'),
-          const EButton(text: 'Sign up',route: '/signup',)
+          const EButton(text: 'log in',route: 'login'),
+          const EButton(text: 'Sign up',route: 'signup',)
         ],
       ),
     );

@@ -4,6 +4,8 @@ import 'package:codecraft/core/global/generaldata/assets_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../core/global/theme/app_colors/light_colors.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -34,20 +36,18 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Container(
         width: double.infinity,
-        decoration: const BoxDecoration(
+        height: double.infinity,
+        decoration:  BoxDecoration(
           gradient: LinearGradient(
             transform: GradientRotation(pi/3),
-              colors: [Colors.blue,Colors.purple],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight
+              colors: [LightThemeColors.purple,LightThemeColors.semiWhite],
+
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft
           )
         ),
         child:  Center(
-          child: Column(
-            children: [
-              Image.asset(logo1),
-            ],
-          ),
+          child: Image.asset(logo),
         ),
       ),
     );

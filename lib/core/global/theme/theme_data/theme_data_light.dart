@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 ThemeData lightTheme(){
   return ThemeData(
-    scaffoldBackgroundColor: LightThemeColors.blue,
+    scaffoldBackgroundColor: LightThemeColors.semiWhite,
     appBarTheme: AppBarTheme(
-      backgroundColor: LightThemeColors.blue,
+      backgroundColor: LightThemeColors.purple,
     ),
     textTheme: const TextTheme(
       displayLarge: TextStyle(

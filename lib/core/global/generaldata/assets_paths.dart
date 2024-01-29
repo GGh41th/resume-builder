@@ -1,5 +1,6 @@
 const String logo="assets/logo.png";
-const String logo1="assets/logo1.png";
+const String logoWhite="assets/logoWhite.png";
+const String logoAllWhite="assets/logoAllWhite.png";
 const String google="assets/google.png";
 const String facebook="assets/facebook.jpg";
 const String whatsup="assets/whatsup.jpg";
