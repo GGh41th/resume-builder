@@ -165,6 +165,9 @@ class _LoginState extends State<LogIn> {
                     ),
                   ),
                 ),
+
+
+
                 Padding(
                   padding:  EdgeInsets.only(bottom: height*0.02),
                   child: Text('Or use the following methods:',style: TextStyle(color: LightThemeColors.blue,fontSize: 16),),
