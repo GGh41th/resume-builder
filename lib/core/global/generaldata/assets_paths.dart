@@ -1,0 +1,9 @@
+const String logo="assets/logo.png";
+const String logo1="assets/logo1.png";
+const String google="assets/google.png";
+const String facebook="assets/facebook.jpg";
+const String whatsup="assets/whatsup.jpg";
+const String whatsup1="assets/whatsup1.jpg";
+const String facebook1="assets/facebook1.png";
+const String google1="assets/google1.png";
+const String whatsup2="assets/whatsup2.jpg";
