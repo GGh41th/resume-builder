@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-    Future.delayed(const Duration(seconds: 5),() {
+    Future.delayed(const Duration(seconds: 2),() {
       Navigator.pushNamed(context, '/enterscreen');
     },);
 
@@ -39,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
         height: double.infinity,
         decoration:  BoxDecoration(
           gradient: LinearGradient(
-            transform: GradientRotation(pi/3),
+            transform: const GradientRotation(pi/3),
               colors: [LightThemeColors.purple,LightThemeColors.semiWhite],
 
               begin: Alignment.topRight,

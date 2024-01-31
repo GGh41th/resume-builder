@@ -1,4 +1,3 @@
-import 'package:codecraft/core/global/theme/app_colors/light_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/login.dart';
@@ -19,10 +18,11 @@ class EButton extends StatelessWidget {
           context: context,
 
           builder: (BuildContext context) {
-            if(route=="login")
-            return Login();
-            else
-              return SignUp();
+            if(route=="login") {
+              return const Login();
+            } else {
+              return const SignUp();
+            }
 
           },
           elevation: 0,
@@ -32,7 +32,10 @@ class EButton extends StatelessWidget {
           barrierColor: Colors.transparent,
           isScrollControlled: true,
           useRootNavigator: true,
-          //i dont that the screen in baground have some flou
+          transitionAnimationController: AnimationController(
+            vsync: Navigator.of(context),
+            duration: const Duration(seconds: 1),
+          ),
 
         );
 
