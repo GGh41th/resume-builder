@@ -20,6 +20,8 @@ class _State extends State<EnterScreen> {
     final  double width=MediaQuery.of(context).size.width;
     final double height=MediaQuery.of(context).size.height;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+
       backgroundColor: LightThemeColors.purple,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

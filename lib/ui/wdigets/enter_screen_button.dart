@@ -15,12 +15,15 @@ class EButton extends StatelessWidget {
       padding:  EdgeInsets.only(top:10,left: width*0.2,right: width*0.2),
       child: ElevatedButton(onPressed: (){
         showModalBottomSheet(
+
           context: context,
+
           builder: (BuildContext context) {
             if(route=="login")
             return Login();
             else
               return SignUp();
+
           },
           elevation: 0,
           shape: const RoundedRectangleBorder(
@@ -32,9 +35,12 @@ class EButton extends StatelessWidget {
           //i dont that the screen in baground have some flou
 
         );
+
       }, child: Text(text,
+
         style: TextStyle(
-          fontSize: width*0.06
+          fontSize: width*0.06,
+
         ),
       ),),
     );
