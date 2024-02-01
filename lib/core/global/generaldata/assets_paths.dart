@@ -8,3 +8,9 @@ const String whatsup1="assets/whatsup1.jpg";
 const String facebook1="assets/facebook1.png";
 const String google1="assets/google1.png";
 const String whatsup2="assets/whatsup2.jpg";
+const String temp1="assets/temp1.png";
+const String temp2="assets/temp2.png";
+const String temp3="assets/temp3.png";
+const String cercle="assets/cercles.png";
+
+
