@@ -55,7 +55,7 @@ class _LoginState extends State<Login> {
               height: 10,
             ),
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -83,7 +83,7 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     const SizedBox(
-                      height:15,
+                      height:35,
                     ),
                     TextFormField(
                       validator: (value) {
@@ -115,6 +115,9 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
+            SizedBox(
+              height: height * 0.05,
+            ),
             ElevatedButton(
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(LightThemeColors.purple),
@@ -128,6 +131,20 @@ class _LoginState extends State<Login> {
               child: Text('Log In',style: TextStyle(color: LightThemeColors.white,
                   fontSize: 20
               ),),
+            ),
+            ElevatedButton(
+                onPressed:
+                    () {
+                  Navigator.pushNamed(context, '/home');
+                },
+                child: Text('Sign Up',style: TextStyle(color: LightThemeColors.white,
+                    fontSize: 20
+                ),),),
+            const SizedBox(
+              height: 30,
+            ),
+            Image.asset(
+              'assets/cercles.png',
             ),
           ],
         ),

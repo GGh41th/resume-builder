@@ -6,6 +6,19 @@ ThemeData lightTheme(){
     scaffoldBackgroundColor: LightThemeColors.semiWhite,
     appBarTheme: AppBarTheme(
       backgroundColor: LightThemeColors.purple,
+      elevation: 10,
+      shadowColor: LightThemeColors.purple,
+      centerTitle: true,
+      titleTextStyle: const TextStyle(
+        fontSize: 25,
+        color: Colors.white,
+        fontWeight: FontWeight.bold
+      ),
+      toolbarHeight: 80,
+      iconTheme: const IconThemeData(
+        color: Colors.white,
+        size: 35
+      ),
     ),
     textTheme: const TextTheme(
       displayLarge: TextStyle(

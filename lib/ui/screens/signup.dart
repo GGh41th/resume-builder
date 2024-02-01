@@ -246,14 +246,9 @@ class _SignUpState extends State<SignUp> {
             ),
             Image.asset(
               'assets/cercles.png',
-              width: width,
             ),
-            //ther rest with be a purple container
-            Container(
-        
-              color: LightThemeColors.purple,
-        
-            )
+
+
           ],
         ),
       ),
