@@ -1,26 +1,30 @@
+import 'package:codecraft/core/global/theme/app_colors/light_colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/global/generaldata/assets_paths.dart';
+import '../wdigets/appbar.dart';
+
 class Sections extends StatefulWidget {
-  const Sections({super.key});
+  const Sections({Key? key}) : super(key: key);
 
   @override
   _SectionsState createState() => _SectionsState();
 }
 
 class _SectionsState extends State<Sections> {
-  Map<String, bool> sectionStates = {
-    'Personal Details': false,
-    'Languages': false,
-    'Education': false,
-    'Experience': false,
-    'Skills': false,
-    'References': false,
-    'Interests': false,
+  Map<String, dynamic> sectionStates = {
+    'Personal Details': {"icon": Icons.person, "value": false},
+    'Languages': {"icon": Icons.language, "value": false},
+    'Education': {"icon": Icons.school, "value": false},
+    'Experience': {"icon": Icons.work, "value": false},
+    'Skills': {"icon": Icons.star, "value": false},
+    'References': {"icon": Icons.people, "value": false},
+    'Interests': {"icon": Icons.music_note, "value": false},
   };
 
   void _handleSectionToggle(String section, bool value) {
     setState(() {
-      sectionStates[section] = value;
+      sectionStates[section]['value'] = value;
     });
   }
 
@@ -32,31 +36,65 @@ class _SectionsState extends State<Sections> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('CV Sections'),
-      ),
-      body: ListView(
-        children: sectionStates.keys.map((section) {
-          return ListTile(
-            leading: Icon(Icons.person), // Replace with appropriate icons
-            title: Text(section),
-            trailing: Switch(
-              thumbIcon: MaterialStateProperty.all(const Icon(Icons.check)),
-              value: sectionStates[section]!,
-              onChanged: (bool value) {
-                _handleSectionToggle(section, value);
-              },
-            ),
-          );
-        }).toList()
-          ..add(
-            ListTile(
-              title: ElevatedButton(
-                onPressed: _handleSubmit,
-                child: const Text('Submit'),
+      appBar:CAppBar(context,text:'back' ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(14.0),
+              child: Text(
+                "Select the sections you want to include in your CV:",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-            ) ,
-          ),
+            ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                children: sectionStates.keys.map((section) {
+                  return SwitchListTile(
+                    secondary: Icon(sectionStates[section]["icon"] as IconData,size:30 ,), // Replace with appropriate icons
+                    title: Text(section,style: const TextStyle(fontSize: 20)),
+                    thumbIcon: (sectionStates[section]["value"] )
+                        ? MaterialStateProperty.all(const Icon(Icons.check,size: 20,))
+                        : MaterialStateProperty.all(const Icon(Icons.close,size: 20,)),
+                    value: sectionStates[section]["value"] ,
+                    onChanged: (bool value) {
+                        _handleSectionToggle(section, value);
+                      },
+
+                  );
+                }).toList(),
+              ),
+            ),
+            const SizedBox(height: 50),
+            Row(
+              //start from the end
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+
+                //text+icon button
+                TextButton.icon(
+                  style: TextButton.styleFrom(
+
+                    backgroundColor: LightThemeColors.purple,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                  ),
+                  onPressed: _handleSubmit,
+                  icon:const Text('NEXT'),
+                  label: const Icon(Icons.navigate_next_sharp),
+                ),
+              ],
+            ),
+            FittedBox(
+                fit: BoxFit.fill,
+                child: Image.asset(
+                  cercle,
+                )),
+          ],
+        ),
       ),
     );
   }

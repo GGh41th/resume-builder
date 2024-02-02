@@ -36,7 +36,6 @@ class _ChooseScreenState extends State<ChooseScreen> {
     double _height = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: CAppBar(context,elev: 0),
-        backgroundColor: LightThemeColors.semiWhite,
         body: SingleChildScrollView(
           physics: NeverScrollableScrollPhysics(),
           child: Align(
@@ -48,7 +47,7 @@ class _ChooseScreenState extends State<ChooseScreen> {
               child: Column(
                 children: [
                   Container(
-                    color: LightThemeColors.semiWhite,
+                    color: LightThemeColors.white,
                     height: _height*0.03,
                   ),
           SizedBox(height: _height*0.02,),
@@ -89,7 +88,9 @@ class _ChooseScreenState extends State<ChooseScreen> {
                         right: _width * 0.25,
                         left: _width * 0.25),
                     child: FilledButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/sections');
+                      },
                       style: ButtonStyle(
                           elevation: MaterialStateProperty.all(4),
                           minimumSize: MaterialStateProperty.all(

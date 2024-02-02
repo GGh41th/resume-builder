@@ -1,5 +1,6 @@
 import 'package:codecraft/core/global/theme/theme_data/theme_data_dark.dart';
 import 'package:codecraft/core/global/theme/theme_data/theme_data_light.dart';
+import 'package:codecraft/ui/screens/Sections.dart';
 import 'package:codecraft/ui/screens/choose_template.dart';
 import 'package:codecraft/ui/screens/enterscreen.dart';
 import 'package:codecraft/ui/screens/home.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         '/login':(context) => Login(),
         '/home':(context) => Home(),
         '/choose':(context) => ChooseScreen(),
-
+        '/sections':(context) => Sections(),
 
 
     },

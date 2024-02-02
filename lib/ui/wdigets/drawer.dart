@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/global/theme/app_colors/light_colors.dart';
 
-Drawer drawer(BuildContext context){
+Drawer Cdrawer(BuildContext context){
   return Drawer(
     backgroundColor: LightThemeColors.semiWhite,
     child: ListView(

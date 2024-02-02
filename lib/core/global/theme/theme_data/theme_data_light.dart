@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 ThemeData lightTheme(){
   return ThemeData(
-    scaffoldBackgroundColor: LightThemeColors.semiWhite,
+    scaffoldBackgroundColor: LightThemeColors.white,
     appBarTheme: AppBarTheme(
       backgroundColor: LightThemeColors.purple,
       elevation: 10,
