@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:codecraft/core/global/generaldata/assets_paths.dart';
 import 'package:codecraft/core/global/theme/app_colors/light_colors.dart';
+import 'package:codecraft/ui/screens/screen.dart';
 import 'package:codecraft/ui/wdigets/CvBrowser.dart';
 import 'package:flutter/material.dart';
 
@@ -34,92 +35,70 @@ class _ChooseScreenState extends State<ChooseScreen> {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
-    return Scaffold(
-        appBar: CAppBar(context,elev: 0),
-        body: SingleChildScrollView(
-          physics: NeverScrollableScrollPhysics(),
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              width: double.infinity,
-              height: _height * 0.88,
-              decoration: BoxDecoration(color: LightThemeColors.white),
-              child: Column(
-                children: [
-                  Container(
-                    color: LightThemeColors.white,
-                    height: _height*0.03,
-                  ),
-          SizedBox(height: _height*0.02,),
-                  Container(
-                    height: _height * 0.45,
-                    child:CvBrowser()
-                  ),
-                  SizedBox(
-                    height: _height * 0.045,
-                  ),
-                  Form(
-                      key: _formKey,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: _width * 0.1,
-                        ),
-                        child: TextFormField(
-                          controller: _text,
-                          decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 6, horizontal: 7),
-                            hintText: 'Title',
-                            hintStyle: TextStyle(
-                              color: Colors.grey.shade600.withOpacity(0.4),
-                              fontSize: _height * 0.032,
-                            ),
-                            border: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.black26, width: 4),
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                          ),
-                        ),
-                      )),
-                  Padding(
-                    padding: EdgeInsets.only(
-                        top: _height * 0.02,
-                        right: _width * 0.25,
-                        left: _width * 0.25),
-                    child: FilledButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/sections');
-                      },
-                      style: ButtonStyle(
-                          elevation: MaterialStateProperty.all(4),
-                          minimumSize: MaterialStateProperty.all(
-                              Size(_width * 0.12, _height * 0.06))),
-                      child: const Text(
-                        'Start Editing',
-                        style: TextStyle(fontSize: 24),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                      child: Container(
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: SizedBox(
-                        height: _height * 0.15,
-                        width: _width,
-                        child: FittedBox(
-                            fit: BoxFit.fill,
-                            child: Image.asset(
-                              cercle,
-                            )),
-                      ),
-                    ),
-                  ))
-                ],
+    return CScreen(context,
+        body:Container(
+          width: double.infinity,
+          decoration: BoxDecoration(color: LightThemeColors.white),
+          child: Column(
+            children: [
+              Container(
+                color: LightThemeColors.white,
+                height: 10,
               ),
-            ),
+              SizedBox(height: 200,),
+              Container(
+                  height:300,
+                  child:CvBrowser()
+              ),
+              SizedBox(
+                height:300,
+              ),
+              Form(
+                  key: _formKey,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: _width * 0.1,
+                    ),
+                    child: TextFormField(
+                      controller: _text,
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: 6, horizontal: 7),
+                        hintText: 'Title',
+                        hintStyle: TextStyle(
+                          color: Colors.grey.shade600.withOpacity(0.4),
+                          fontSize: _height * 0.032,
+                        ),
+                        border: OutlineInputBorder(
+                          borderSide:
+                          BorderSide(color: Colors.black26, width: 4),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                    ),
+                  )),
+              Padding(
+                padding: EdgeInsets.only(
+                    top: _height * 0.02,
+                    right: _width * 0.25,
+                    left: _width * 0.25),
+                child: FilledButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/sections');
+                  },
+                  style: ButtonStyle(
+                      elevation: MaterialStateProperty.all(4),
+                      minimumSize: MaterialStateProperty.all(
+                          Size(_width * 0.12, _height * 0.06))),
+                  child: const Text(
+                    'Start Editing',
+                    style: TextStyle(fontSize: 24),
+                  ),
+                ),
+              ),
+
+            ],
           ),
-        ));
+        ),);
   }
 }

@@ -47,6 +47,7 @@ Drawer Cdrawer(BuildContext context){
           leading: const Icon(Icons.logout),
           title: const Text('Logout'),
           onTap: () {
+            Scaffold.of(context).closeDrawer();
             Navigator.pushNamed(context, '/enterscreen');
           },
         ),

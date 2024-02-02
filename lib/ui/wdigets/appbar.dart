@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 AppBar CAppBar(BuildContext context,{double elev=4.0,String text ="menu"}){
   return AppBar(
+    toolbarHeight: 80,
     elevation: elev,
     title: const Align(
       alignment: Alignment(0.8, 0),
