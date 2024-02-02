@@ -32,6 +32,7 @@ Drawer drawer(BuildContext context){
           leading: const Icon(Icons.account_circle),
           title: const Text('Browse Templates'),
           onTap: () {
+            Navigator.pushNamed(context, '/choose');
             // Navigate to Browse Templates screen
           },
         ),

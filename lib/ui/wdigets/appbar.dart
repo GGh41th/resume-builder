@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-AppBar appBar(BuildContext context){
+AppBar CAppBar(BuildContext context){
   return AppBar(
-    title: const Image(image: AssetImage('assets/logoAllWhite.png'),
-      height: 50,),
+    title: const Align(
+
+      alignment: Alignment(0.8, 0),
+      child: Image(image: AssetImage('assets/logoAllWhite.png'),
+        height: 50,),
+    ),
     leading: Builder(
       builder: (BuildContext context) {
         return IconButton(

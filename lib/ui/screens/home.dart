@@ -10,7 +10,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(context),
+      appBar: CAppBar(context),
       drawer: drawer(context),
       body: SingleChildScrollView(
         child: Center(
