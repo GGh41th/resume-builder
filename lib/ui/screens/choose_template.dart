@@ -35,7 +35,7 @@ class _ChooseScreenState extends State<ChooseScreen> {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
     return Scaffold(
-        appBar: CAppBar(context),
+        appBar: CAppBar(context,elev: 0),
         backgroundColor: LightThemeColors.semiWhite,
         body: SingleChildScrollView(
           child: Align(
@@ -47,11 +47,16 @@ class _ChooseScreenState extends State<ChooseScreen> {
               child: Column(
                 children: [
                   Container(
-                    height: _height * 0.5,
+                    color: LightThemeColors.semiWhite,
+                    height: _height*0.03,
+                  ),
+SizedBox(height: _height*0.02,),
+                  Container(
+                    height: _height * 0.45,
                     child:CvBrowser()
                   ),
                   SizedBox(
-                    height: _height * 0.05,
+                    height: _height * 0.045,
                   ),
                   Form(
                       key: _formKey,

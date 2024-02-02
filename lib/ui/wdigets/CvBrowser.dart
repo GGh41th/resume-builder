@@ -44,7 +44,7 @@ class _CvBrowserState extends State<CvBrowser> {
       children: [
         SizedBox(
           height: _height * 0.5,
-          width: _width * 0.1,
+          width: _width * 0.12,
           child: Center(child: GestureDetector(onTap: () {
             if (_controller.page == 0) {
               _controller.animateToPage(
@@ -65,19 +65,24 @@ class _CvBrowserState extends State<CvBrowser> {
                   child: Icon(Icons.arrow_drop_down_sharp, size: 40,
                     color: LightThemeColors.purple,)))),
         ),
-        Expanded(child: PageView.builder(
-          controller: _controller,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: EdgeInsets.only(top: _height * 0.04),
-              child: Image.asset(_data[index]["path"]!),
-            );
-          },
+        Expanded(child: Material(
+          elevation: 8,
+          child: PageView.builder(
+            controller: _controller,
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              return InteractiveViewer(
+                minScale: 0.2,
+                  maxScale: 4,
+                  child: Image.asset(_data[index]["path"]!,
+                  fit: BoxFit.fill,),
+                  );
+            },
+          ),
         )),
         SizedBox(
           height: _height * 0.5,
-          width: _width * 0.1,
+          width: _width * 0.12,
           child: Center(child: GestureDetector(onTap: () {
             if (_controller.page == templates.length - 1) {
               _controller.animateToPage(
