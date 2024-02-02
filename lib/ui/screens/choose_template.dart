@@ -38,6 +38,7 @@ class _ChooseScreenState extends State<ChooseScreen> {
         appBar: CAppBar(context,elev: 0),
         backgroundColor: LightThemeColors.semiWhite,
         body: SingleChildScrollView(
+          physics: NeverScrollableScrollPhysics(),
           child: Align(
             alignment: Alignment.bottomCenter,
             child: Container(
@@ -50,7 +51,7 @@ class _ChooseScreenState extends State<ChooseScreen> {
                     color: LightThemeColors.semiWhite,
                     height: _height*0.03,
                   ),
-SizedBox(height: _height*0.02,),
+          SizedBox(height: _height*0.02,),
                   Container(
                     height: _height * 0.45,
                     child:CvBrowser()

@@ -65,19 +65,17 @@ class _CvBrowserState extends State<CvBrowser> {
                   child: Icon(Icons.arrow_drop_down_sharp, size: 40,
                     color: LightThemeColors.purple,)))),
         ),
-        Expanded(child: Material(
-          elevation: 8,
-          child: PageView.builder(
-            controller: _controller,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              return InteractiveViewer(
-                minScale: 0.2,
-                  maxScale: 4,
-                  child: Image.asset(_data[index]["path"]!,
-                  fit: BoxFit.fill,),
-                  );
-            },
+        Expanded(child: InteractiveViewer(
+          child: Material(
+            elevation: 8,
+            child: PageView.builder(
+              controller: _controller,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return Image.asset(_data[index]["path"]!,
+                fit: BoxFit.fill,);
+              },
+            ),
           ),
         )),
         SizedBox(
