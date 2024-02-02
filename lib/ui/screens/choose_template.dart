@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:codecraft/core/global/generaldata/assets_paths.dart';
 import 'package:codecraft/core/global/theme/app_colors/light_colors.dart';
+import 'package:codecraft/ui/wdigets/CvBrowser.dart';
 import 'package:flutter/material.dart';
 
 import '../wdigets/appbar.dart';
@@ -47,22 +48,7 @@ class _ChooseScreenState extends State<ChooseScreen> {
                 children: [
                   Container(
                     height: _height * 0.5,
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          height: _height*0.5,
-                          width: _width*0.1,
-                          child: Center(child: Transform.rotate(angle: pi/2,child: Icon(Icons.arrow_drop_down_sharp,size: 40,color: LightThemeColors.purple,))),
-                        ),
-                        const Expanded(child: Placeholder()),
-                        SizedBox\(
-                          height: _height*0.5,
-                          width: _width*0.1,
-                          child: Center(child: Transform.rotate(angle: pi/2,child: Icon(Icons.arrow_drop_up_sharp,size: 40,color: LightThemeColors.purple))),
-                        )
-
-                      ],
-                    ),
+                    child:CvBrowser()
                   ),
                   SizedBox(
                     height: _height * 0.05,
