@@ -2,9 +2,12 @@ import 'package:codecraft/core/global/theme/theme_data/theme_data_dark.dart';
 import 'package:codecraft/core/global/theme/theme_data/theme_data_light.dart';
 import 'package:codecraft/ui/screens/Sections.dart';
 import 'package:codecraft/ui/screens/choose_template.dart';
+import 'package:codecraft/ui/screens/editing.dart';
 import 'package:codecraft/ui/screens/enterscreen.dart';
 import 'package:codecraft/ui/screens/home.dart';
 import 'package:codecraft/ui/screens/login.dart';
+import 'package:codecraft/ui/screens/pdfviewer.dart';
+import 'package:codecraft/ui/screens/profile.dart';
 import 'package:codecraft/ui/screens/signup.dart';
 import 'package:codecraft/ui/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +32,9 @@ class MyApp extends StatelessWidget {
         '/home':(context) => Home(),
         '/choose':(context) => ChooseScreen(),
         '/sections':(context) => Sections(),
+        '/profile':(context) => Profile(),
+        '/editing':(context) => Editing(),
+        '/preview':(context) => PDFScreen(),
 
 
     },

@@ -2,6 +2,7 @@ import 'package:codecraft/ui/wdigets/appbar.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/global/generaldata/assets_paths.dart';
+import '../wdigets/drawer.dart';
 
 Scaffold CScreen(BuildContext context,  {required Widget body,String text = "menu", double elevationAppBar = 4.0}) {
   double _width = MediaQuery.of(context).size.width;
@@ -9,25 +10,24 @@ Scaffold CScreen(BuildContext context,  {required Widget body,String text = "men
   return Scaffold(
     resizeToAvoidBottomInset: false,
     appBar: CAppBar(context, text: text, elev: elevationAppBar),
+    drawer: Cdrawer(context),
     body: Stack(
       children: [
 
         SizedBox(
           height: _height,
           width: _width,
-          child: Expanded(
-            child: Container(
-               padding: MediaQuery.of(context).viewInsets,
-              width: _width,
-                child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        body,
-                        const SizedBox(
-                          height: 100,)
-                      ],
-                    ))),
-          ),
+          child: Container(
+             padding: MediaQuery.of(context).viewInsets,
+            width: _width,
+              child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      body,
+                      const SizedBox(
+                        height: 100,)
+                    ],
+                  ))),
         ),
         SizedBox(
           height: _height,

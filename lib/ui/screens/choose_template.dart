@@ -38,20 +38,19 @@ class _ChooseScreenState extends State<ChooseScreen> {
     return CScreen(context,
         body:Container(
           width: double.infinity,
-          decoration: BoxDecoration(color: LightThemeColors.white),
           child: Column(
             children: [
               Container(
                 color: LightThemeColors.white,
                 height: 10,
               ),
-              SizedBox(height: 200,),
+              SizedBox(height: 20,),
               Container(
-                  height:300,
+                  height:400,
                   child:CvBrowser()
               ),
               SizedBox(
-                height:300,
+                height:30,
               ),
               Form(
                   key: _formKey,
@@ -77,23 +76,24 @@ class _ChooseScreenState extends State<ChooseScreen> {
                       ),
                     ),
                   )),
-              Padding(
-                padding: EdgeInsets.only(
-                    top: _height * 0.02,
-                    right: _width * 0.25,
-                    left: _width * 0.25),
-                child: FilledButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/sections');
-                  },
-                  style: ButtonStyle(
-                      elevation: MaterialStateProperty.all(4),
-                      minimumSize: MaterialStateProperty.all(
-                          Size(_width * 0.12, _height * 0.06))),
-                  child: const Text(
-                    'Start Editing',
-                    style: TextStyle(fontSize: 24),
-                  ),
+              SizedBox(
+                height: 20,
+              ),
+              FilledButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/sections');
+                },
+                style: ButtonStyle(
+                    elevation: MaterialStateProperty.all(4),
+                    minimumSize: MaterialStateProperty.all(
+                        Size(_width * 0.12, _height * 0.06)),
+                    backgroundColor: MaterialStateProperty.all(
+                        LightThemeColors.purple),
+
+                ),
+                child: const Text(
+                  'Start Editing',
+                  style: TextStyle(fontSize: 24),
                 ),
               ),
 

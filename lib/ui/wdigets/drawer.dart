@@ -19,6 +19,7 @@ Drawer Cdrawer(BuildContext context){
           title: const Text('Home'),
           onTap: () {
             // Navigate to Home screen
+            Navigator.pushNamed(context, '/home');
           },
         ),
         ListTile(
@@ -37,10 +38,17 @@ Drawer Cdrawer(BuildContext context){
           },
         ),
         ListTile(
+          leading: const Icon(Icons.person),
+          title: const Text('Profile'),
+          onTap: () {
+            Navigator.pushNamed(context, '/profile');
+          },),
+        ListTile(
           leading: const Icon(Icons.info),
           title: const Text('About'),
           onTap: () {
             // Navigate to About screen
+
           },
         ),
         ListTile(
