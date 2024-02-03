@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/global/theme/app_colors/light_colors.dart';
 
@@ -46,7 +47,10 @@ Drawer Cdrawer(BuildContext context){
         ListTile(
           leading: const Icon(Icons.logout),
           title: const Text('Logout'),
-          onTap: () {
+          onTap: () async{
+            SharedPreferences pref=await SharedPreferences.getInstance();
+            print(pref.getString('token'));
+            pref.remove('token');
             Scaffold.of(context).closeDrawer();
             Navigator.pushNamed(context, '/enterscreen');
           },

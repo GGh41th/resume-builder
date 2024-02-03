@@ -40,6 +40,9 @@ dependencies:
   flutter_social_button: ^1.1.4+1
   flutter_popup_menu_button: ^0.0.1+5
   photo_view: ^0.14.0
+  http: ^1.2.0
+  api_cache_manager: ^1.0.2
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:

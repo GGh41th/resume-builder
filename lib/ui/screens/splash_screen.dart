@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:codecraft/core/global/generaldata/assets_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/global/theme/app_colors/light_colors.dart';
 
@@ -18,8 +19,11 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-    Future.delayed(const Duration(seconds: 2),() {
-      Navigator.pushNamed(context, '/home');
+    Future.delayed(const Duration(seconds: 2),() async{
+      SharedPreferences pref=await SharedPreferences.getInstance();
+      String? token=pref.getString('token');
+      print(token);
+      (token==null) ? Navigator.pushNamedAndRemoveUntil(context, '/enterscreen',(route) => false,):Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
     },);
 
 
