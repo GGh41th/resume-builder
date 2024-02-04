@@ -40,9 +40,6 @@ dependencies:
   flutter_social_button: ^1.1.4+1
   flutter_popup_menu_button: ^0.0.1+5
   photo_view: ^0.14.0
-  syncfusion_flutter_pdfviewer: ^24.2.3
-  path_provider: ^2.1.2
-  permission_handler: ^11.2.0
 
 dev_dependencies:
   flutter_test:
@@ -69,7 +66,6 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
      - assets/
-     - assets/RESUME.pdf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
