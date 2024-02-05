@@ -1,9 +1,10 @@
 import 'package:codecraft/core/global/theme/app_colors/light_colors.dart';
+import 'package:codecraft/core/models/cvdata.dart';
 import 'package:codecraft/ui/screens/screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../../core/global/generaldata/assets_paths.dart';
-import '../wdigets/appbar.dart';
+import '../../core/services/cvmaker.dart';
 import 'editing.dart';
 
 class Sections extends StatefulWidget {
@@ -14,24 +15,28 @@ class Sections extends StatefulWidget {
 }
 
 class _SectionsState extends State<Sections> {
-  Map<String, dynamic> sectionStates = {
-    'Personal Details': {"icon": Icons.person, "value": false},
-    'Languages': {"icon": Icons.language, "value": false},
-    'Education': {"icon": Icons.school, "value": false},
-    'Experience': {"icon": Icons.work, "value": false},
-    'Skills': {"icon": Icons.star, "value": false},
-    'References': {"icon": Icons.people, "value": false},
-    'Interests': {"icon": Icons.music_note, "value": false},
+  Map<SectionType, Map<String,dynamic>> sectionStates = {
+    SectionType.PersonalDetails: {"icon": Icons.person, "value": true,"text":"Personal Details"},
+    SectionType.Languages: {"icon": Icons.language, "value": false,"text":"Languages"},
+    SectionType.Education: {"icon": Icons.school, "value": false,"text":"Education"},
+    SectionType.Experience: {"icon": Icons.work, "value": false,"text":"Experience"},
+    SectionType.Skills: {"icon": Icons.star, "value": false,"text":"Skills"},
+    SectionType.Interests: {"icon": Icons.people, "value": false,"text":"Interests"},
   };
 
-  void _handleSectionToggle(String section, bool value) {
-    setState(() {
-      sectionStates[section]['value'] = value;
-    });
+  void _handleSectionToggle(SectionType section, bool value) {
+    if(sectionStates[section]?["text"] != 'Personal Details')
+    {
+      setState(() {
+        sectionStates[section]?['value'] = value;
+      });
+    }
   }
 
   void _handleSubmit() {
-    // Handle submission logic using sectionStates
+    //get keys section where value is true
+    var selectedSections = sectionStates.keys.where((key) => sectionStates[key]!['value'] == true).toList();
+    Provider.of<CVProvider>(context, listen: false).setSections(selectedSections);
     print(sectionStates);
     Navigator.push(context, MaterialPageRoute(builder: (context) =>  Editing()));
   }
@@ -56,12 +61,12 @@ class _SectionsState extends State<Sections> {
             child: Column(
               children: sectionStates.keys.map((section) {
                 return SwitchListTile(
-                  secondary: Icon(sectionStates[section]["icon"] as IconData,size:30 ,), // Replace with appropriate icons
-                  title: Text(section,style: const TextStyle(fontSize: 20)),
-                  thumbIcon: (sectionStates[section]["value"] )
+                  secondary: Icon(sectionStates[section]?["icon"] as IconData,size:30 ,), // Replace with appropriate icons
+                  title: Text(sectionStates[section]?["text"],style: const TextStyle(fontSize: 20)),
+                  thumbIcon: (sectionStates[section]?["value"] )
                       ? MaterialStateProperty.all(const Icon(Icons.check,size: 20,))
                       : MaterialStateProperty.all(const Icon(Icons.close,size: 20,)),
-                  value: sectionStates[section]["value"] ,
+                  value: sectionStates[section]?["value"] ,
                   onChanged: (bool value) {
                     _handleSectionToggle(section, value);
                   },

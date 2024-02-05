@@ -1,9 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../core/global/generaldata/templates.dart';
 import '../../core/global/theme/app_colors/light_colors.dart';
+import '../../core/services/cvmaker.dart';
 
 class CvBrowser extends StatefulWidget {
   const CvBrowser({super.key});
@@ -48,8 +50,10 @@ class _CvBrowserState extends State<CvBrowser> {
           child: Center(child: GestureDetector(onTap: () {
             if (_controller.page == 0) {
               _controller.animateToPage(
-                  templates.length - 1, duration: Duration(seconds: 1),
+                  templates.length - 1, duration: Duration(milliseconds: 200),
                   curve: Curves.linear);
+              Provider.of<CVProvider>(context, listen: false)
+                  .setTemplateId(templates[templates.length - 1]["id"]!);
             }
             else {
               int index = _controller.page!.floor() - 1;
@@ -59,6 +63,8 @@ class _CvBrowserState extends State<CvBrowser> {
               _controller.animateToPage(
                   index % templates.length, duration: Duration(seconds: 1),
                   curve: Curves.linear);
+              Provider.of<CVProvider>(context, listen: false)
+                  .setTemplateId(templates[index]["id"]!);
             }
           },
               child: Transform.rotate(angle: pi / 2,
@@ -84,15 +90,19 @@ class _CvBrowserState extends State<CvBrowser> {
           child: Center(child: GestureDetector(onTap: () {
             if (_controller.page == templates.length - 1) {
               _controller.animateToPage(
-                  0, duration: Duration(seconds: 1), curve: Curves.linear);
-
+                  0, duration: Duration(milliseconds: 200), curve: Curves.linear);
+              Provider.of<CVProvider>(context, listen: false)
+                  .setTemplateId(templates[0]["id"]!);
             }
             else{
             int index = _controller.page!.floor() + 1;
 
             _controller.animateToPage(
                 index % templates.length, duration: Duration(seconds: 1),
-                curve: Curves.linear);}
+                curve: Curves.linear);
+                Provider.of<CVProvider>(context, listen: false)
+                    .setTemplateId(templates[index]["id"]!);
+            }
           },
               child: Transform.rotate(angle: pi / 2,
                   child: Icon(Icons.arrow_drop_up_sharp, size: 40,

@@ -1,5 +1,6 @@
 import 'package:codecraft/core/global/theme/theme_data/theme_data_dark.dart';
 import 'package:codecraft/core/global/theme/theme_data/theme_data_light.dart';
+import 'package:codecraft/core/services/cvmaker.dart';
 import 'package:codecraft/ui/screens/Sections.dart';
 import 'package:codecraft/ui/screens/choose_template.dart';
 import 'package:codecraft/ui/screens/editing.dart';
@@ -11,6 +12,7 @@ import 'package:codecraft/ui/screens/profile.dart';
 import 'package:codecraft/ui/screens/signup.dart';
 import 'package:codecraft/ui/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 class MyApp extends StatelessWidget {
@@ -18,27 +20,30 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: lightTheme(),
-      darkTheme: darkTheme(),
-      themeMode: ThemeMode.light,
-      initialRoute: '/',
-      routes: {
-        '/':(context) =>  SplashScreen(),
-        '/enterscreen':(context) => EnterScreen(),
-        '/signup':(context) => SignUp(),
-        '/login':(context) => Login(),
-        '/home':(context) => Home(),
-        '/choose':(context) => ChooseScreen(),
-        '/sections':(context) => Sections(),
-        '/profile':(context) => Profile(),
-        '/editing':(context) => Editing(),
-        '/preview':(context) => PDFScreen(),
+    return ChangeNotifierProvider(
+      create: (BuildContext context) => CVProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: lightTheme(),
+        darkTheme: darkTheme(),
+        themeMode: ThemeMode.light,
+        initialRoute: '/',
+        routes: {
+          '/':(context) =>  SplashScreen(),
+          '/enterscreen':(context) => EnterScreen(),
+          '/signup':(context) => SignUp(),
+          '/login':(context) => Login(),
+          '/home':(context) => Home(),
+          '/choose':(context) => ChooseScreen(),
+          '/sections':(context) => Sections(),
+          '/profile':(context) => Profile(),
+          '/editing':(context) => Editing(),
+          '/preview':(context) => PDFScreen(),
 
 
-    },
+      },
 
+      ),
     );
   }
 }

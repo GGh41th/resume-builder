@@ -59,6 +59,7 @@ Drawer Cdrawer(BuildContext context){
             SharedPreferences pref=await SharedPreferences.getInstance();
             print(pref.getString('token'));
             pref.remove('token');
+
             Scaffold.of(context).closeDrawer();
             Navigator.pushNamed(context, '/enterscreen');
           },

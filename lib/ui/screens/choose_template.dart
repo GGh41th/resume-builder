@@ -2,9 +2,11 @@ import 'dart:math';
 
 import 'package:codecraft/core/global/generaldata/assets_paths.dart';
 import 'package:codecraft/core/global/theme/app_colors/light_colors.dart';
+import 'package:codecraft/core/services/cvmaker.dart';
 import 'package:codecraft/ui/screens/screen.dart';
 import 'package:codecraft/ui/wdigets/CvBrowser.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../wdigets/appbar.dart';
 
@@ -60,6 +62,16 @@ class _ChooseScreenState extends State<ChooseScreen> {
                     ),
                     child: TextFormField(
                       controller: _text,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter a title';
+                        }
+                        //validate if title is one word
+                        if (value.contains(' ')) {
+                          return 'Title must be one word';
+                        }
+                        return null;
+                      },
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(
                             vertical: 6, horizontal: 7),
@@ -81,7 +93,15 @@ class _ChooseScreenState extends State<ChooseScreen> {
               ),
               FilledButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/sections');
+                    if (_formKey.currentState!.validate()) {
+                      // Validation passed, extract the input value and capitalize the first letter
+                      String title = _text.text.trim();
+                      title = title.substring(0, 1).toUpperCase() + title.substring(1);
+                      Provider.of<CVProvider>(context, listen: false).setTitle(title);
+                      // Navigate to the next screen with the validated title as a parameter
+                      Navigator.pushNamed(context, '/sections');
+
+                  };
                 },
                 style: ButtonStyle(
                     elevation: MaterialStateProperty.all(4),

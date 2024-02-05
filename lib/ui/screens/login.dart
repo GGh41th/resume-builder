@@ -4,12 +4,14 @@ import 'package:codecraft/core/global/theme/app_colors/light_colors.dart';
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/models/login_request_model.dart';
 import '../../core/models/reponse_error_model.dart';
 import '../../core/models/reponse_sucess_model.dart';
 import '../../core/services/auth_services/auth_api_services.dart';
+import '../../core/services/cvmaker.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -48,6 +50,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
+
     return Container(
         decoration: BoxDecoration(
           color: LightThemeColors.semiWhite,
