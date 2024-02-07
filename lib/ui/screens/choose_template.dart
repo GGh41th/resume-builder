@@ -1,14 +1,9 @@
-import 'dart:math';
-
-import 'package:codecraft/core/global/generaldata/assets_paths.dart';
 import 'package:codecraft/core/global/theme/app_colors/light_colors.dart';
 import 'package:codecraft/core/services/cvmaker.dart';
 import 'package:codecraft/ui/screens/screen.dart';
 import 'package:codecraft/ui/wdigets/CvBrowser.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../wdigets/appbar.dart';
 
 class ChooseScreen extends StatefulWidget {
   const ChooseScreen({super.key});
@@ -38,7 +33,7 @@ class _ChooseScreenState extends State<ChooseScreen> {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
     return CScreen(context,
-        body:Container(
+        body:SizedBox(
           width: double.infinity,
           child: Column(
             children: [
@@ -46,12 +41,12 @@ class _ChooseScreenState extends State<ChooseScreen> {
                 color: LightThemeColors.white,
                 height: 10,
               ),
-              SizedBox(height: 20,),
-              Container(
+              const SizedBox(height: 20,),
+              const SizedBox(
                   height:400,
                   child:CvBrowser()
               ),
-              SizedBox(
+              const SizedBox(
                 height:30,
               ),
               Form(
@@ -73,7 +68,7 @@ class _ChooseScreenState extends State<ChooseScreen> {
                         return null;
                       },
                       decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(
+                        contentPadding: const EdgeInsets.symmetric(
                             vertical: 6, horizontal: 7),
                         hintText: 'Title',
                         hintStyle: TextStyle(
@@ -82,13 +77,13 @@ class _ChooseScreenState extends State<ChooseScreen> {
                         ),
                         border: OutlineInputBorder(
                           borderSide:
-                          BorderSide(color: Colors.black26, width: 4),
+                          const BorderSide(color: Colors.black26, width: 4),
                           borderRadius: BorderRadius.circular(30),
                         ),
                       ),
                     ),
                   )),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               FilledButton(

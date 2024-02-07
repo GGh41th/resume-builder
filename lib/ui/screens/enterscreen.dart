@@ -56,7 +56,7 @@ class _State extends State<EnterScreen> {
          const ERow(text: 'Over 20 Templates',icon: Icons.copy),
           const ERow(icon: Icons.file_download_outlined, text: 'Instant download'),
           const ERow(icon: CupertinoIcons.gear, text:'Fully Customaizable Cv'),
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
           const EButton(text: 'log in',route: 'login'),
           const EButton(text: 'Sign up',route: 'signup',)
         ],

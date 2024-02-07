@@ -16,12 +16,12 @@ class Editing extends StatefulWidget {
 }
 
 class _EditingState extends State<Editing> {
+  late final Map<SectionType,InputControllers> controllers;
+  late final Map<SectionType,ExpansionTile> sections;
   @override
-  @override
-  Widget build(BuildContext context) {
-    var pv=Provider.of<CVProvider>(context);
-    var sectionData = pv.cv.sections;
-    Map<SectionType,InputControllers> controllers = {
+  void initState() {
+    super.initState();
+    controllers = {
       SectionType.PersonalDetails: PerInfoControllers(),
       SectionType.Education: EducationControllers(),
       SectionType.Experience: ExperienceControllers(),
@@ -29,7 +29,7 @@ class _EditingState extends State<Editing> {
       SectionType.Languages: LanguageControllers(),
       SectionType.Interests: InterestControllers(),
     };
-    Map<SectionType,ExpansionTile> sections = {
+    sections = {
       SectionType.PersonalDetails: SectionPersonalInfo(controllers[SectionType.PersonalDetails] as PerInfoControllers),
       SectionType.Education: SectionEducation(controllers[SectionType.Education] as EducationControllers),
       SectionType.Experience: SectionExperience(controllers[SectionType.Experience] as ExperienceControllers),
@@ -37,6 +37,12 @@ class _EditingState extends State<Editing> {
       SectionType.Languages: SectionLanguages(controllers[SectionType.Languages] as LanguageControllers),
       SectionType.Interests: SectionInterests(controllers[SectionType.Interests] as InterestControllers),
     };
+  }
+  @override
+  Widget build(BuildContext context) {
+    var pv=Provider.of<CVProvider>(context);
+    var sectionData = pv.cv.sections;
+    InputControllers a=PerInfoControllers(),b=EducationControllers();
     final editingformKey = GlobalKey<FormState>();
     return CScreen(
       context,
@@ -51,7 +57,7 @@ class _EditingState extends State<Editing> {
             height: 20,
           ),
             Form(
-              key: editingformKey,
+
               child: Column(
                 children: sectionData.map((e) {
                   return Column(

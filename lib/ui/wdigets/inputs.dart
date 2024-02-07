@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import '../../core/global/theme/app_colors/light_colors.dart';
 import '../../core/models/sections Controller.dart';
 
 Padding textf(text,controller,{keyboardType =TextInputType.text,
-                    inputFormatter =null,
-                    maxLenght =null,
-                    validator=null}) {
+                    maxLength,
+                    validator}) {
   return Padding(
     padding: const EdgeInsets.only(top: 2, right: 10, left: 10, bottom: 8),
     child: TextFormField(
+
+      autocorrect: false,
       controller: controller,
       validator: (value) {
         if (value == null || value.isEmpty) {
@@ -20,7 +20,7 @@ Padding textf(text,controller,{keyboardType =TextInputType.text,
         return null;
       },
       keyboardType: keyboardType,
-      maxLength: maxLenght,
+      maxLength: maxLength,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric( horizontal: 10,vertical: 10),
         hintText: text,
@@ -35,8 +35,9 @@ Padding textf(text,controller,{keyboardType =TextInputType.text,
   );
 }
 
-ExpansionTile SectionIfos(icon,title,children) {
+ExpansionTile SectionInfos(icon,title,children) {
   return ExpansionTile(
+    maintainState: true,
     leading: Icon(
       icon,
       color: LightThemeColors.black,
@@ -57,7 +58,7 @@ ExpansionTile SectionIfos(icon,title,children) {
 
 ExpansionTile SectionPersonalInfo(PerInfoControllers controler) {
 
-  return SectionIfos(Icons.person,"Personal Info",
+  return SectionInfos(Icons.person,"Personal Info",
       [Row(
         children: [
           Expanded(
@@ -77,20 +78,19 @@ ExpansionTile SectionPersonalInfo(PerInfoControllers controler) {
               return null;
             }),
         textf("Phone",controler.phone,keyboardType: TextInputType.phone,
-            maxLenght: 9,
-            inputFormatter: FilteringTextInputFormatter.digitsOnly,
+            maxLength: 9,
             validator: (value) {
               if (value.length != 9) {
                 return 'Please enter a valid phone number';
               }
               return null;
             }),
-        textf("Address",controler.address,keyboardType: TextInputType.streetAddress,maxLenght: 50),
+        textf("Address",controler.address,keyboardType: TextInputType.streetAddress,maxLength: 50),
 
-        textf("City",controler.city,keyboardType: TextInputType.streetAddress,maxLenght: 50),
-        textf("Country",controler.country,keyboardType: TextInputType.streetAddress,maxLenght: 50),
-        textf("Postal Code",controler.postalCode,keyboardType: TextInputType.number,maxLenght: 4,
-            inputFormatter: FilteringTextInputFormatter.digitsOnly,
+        textf("City",controler.city,keyboardType: TextInputType.streetAddress,maxLength: 50),
+        textf("Country",controler.country,keyboardType: TextInputType.streetAddress,maxLength: 50),
+        textf("Postal Code",controler.postalCode,keyboardType: TextInputType.number,maxLength: 4,
+
             validator: (value) {
               if (value.length != 4) {
                 return 'Please enter a valid postal code';
@@ -101,28 +101,27 @@ ExpansionTile SectionPersonalInfo(PerInfoControllers controler) {
 }
 
 ExpansionTile SectionEducation(EducationControllers controler) {
-  return SectionIfos(Icons.school,"Education",
-      [textf("Degree",controler.degree,keyboardType: TextInputType.text,maxLenght: 20),
-        textf("Institution",controler.institution,keyboardType: TextInputType.text,maxLenght: 20),
+  return SectionInfos(Icons.school,"Education",
+      [textf("Degree",controler.degree,keyboardType: TextInputType.text,maxLength: 20),
+        textf("Institution",controler.institution,keyboardType: TextInputType.text,maxLength: 20),
         Row(
           children: [
             Expanded(
               child: textf("Start Date",controler.startYear,keyboardType: TextInputType.datetime,
-                  inputFormatter: FilteringTextInputFormatter.digitsOnly,
-                  maxLenght: 4,
+                  maxLength: 4,
                   validator: (value) {
                     if (value.length != 4) {
                       return 'Please enter a valid year';
                     }
-                    if(int.parse(value)>DateTime.now().year)
+                    if(int.parse(value)>DateTime.now().year) {
                       return 'Please enter a valid year';
+                    }
                     return null;
                   }),
             ),
             Expanded(
               child: textf("End Date",controler.endYear,keyboardType: TextInputType.datetime,
-                  inputFormatter: FilteringTextInputFormatter.digitsOnly,
-                  maxLenght: 4,
+                  maxLength: 4,
                   validator: (value) {
                     if (value.length != 4) {
                       return 'Please enter a valid year';
@@ -132,39 +131,39 @@ ExpansionTile SectionEducation(EducationControllers controler) {
             ),
           ],
         ),
-        textf("Description",controler.description,keyboardType: TextInputType.multiline,maxLenght: 200),
+        textf("Description",controler.description,keyboardType: TextInputType.multiline,maxLength: 200),
       ]);
 }
 ExpansionTile SectionExperience(ExperienceControllers controler) {
-  return SectionIfos(Icons.work,"Experience",
-      [textf("Title",controler.title,keyboardType: TextInputType.text,maxLenght: 10),
-        textf("Company",controler.company,keyboardType: TextInputType.text,maxLenght: 20),
+  return SectionInfos(Icons.work,"Experience",
+      [textf("Title",controler.title,keyboardType: TextInputType.text,maxLength: 10),
+        textf("Company",controler.company,keyboardType: TextInputType.text,maxLength: 20),
         Row(
           children: [
             Expanded(
               child: textf("Start year",controler.startYear,keyboardType: TextInputType.datetime,
-                  inputFormatter: FilteringTextInputFormatter.digitsOnly,
-                  maxLenght: 4,
+                  maxLength: 4,
                   validator: (value) {
                     if (value.length != 4) {
                       return 'Please enter a valid year';
                     }
                     //validate a reel year
-                    if(int.parse(value)>DateTime.now().year)
+                    if(int.parse(value)>DateTime.now().year) {
                       return 'Please enter a valid year';
+                    }
                     return null;
                   }),
             ),
             Expanded(
               child: textf("Start month",controler.startMonth,keyboardType: TextInputType.datetime,
-                  inputFormatter: FilteringTextInputFormatter.digitsOnly,
-                  maxLenght: 2,
+                  maxLength: 2,
                   validator: (value) {
                     if (value.length != 2) {
                       return 'Please enter a valid month';
                     }
-                    if(int.parse(value)>12)
+                    if(int.parse(value)>12) {
                       return 'Please enter a valid month';
+                    }
                     return null;
                   }),
             ),
@@ -174,8 +173,7 @@ ExpansionTile SectionExperience(ExperienceControllers controler) {
           children: [
             Expanded(
               child: textf("End year",controler.endYear,keyboardType: TextInputType.datetime,
-                  inputFormatter: FilteringTextInputFormatter.digitsOnly,
-                  maxLenght: 4,
+                  maxLength: 4,
                   validator: (value) {
                     if (value.length != 4) {
                       return 'Please enter a valid year';
@@ -185,38 +183,38 @@ ExpansionTile SectionExperience(ExperienceControllers controler) {
             ),
             Expanded(
               child: textf("End month",controler.endMonth,keyboardType: TextInputType.datetime,
-                  inputFormatter: FilteringTextInputFormatter.digitsOnly,
-                  maxLenght: 2,
+                  maxLength: 2,
                   validator: (value) {
                     if (value.length != 4) {
                       return 'Please enter a valid month';
                     }
-                    if(int.parse(value)>12)
+                    if(int.parse(value)>12) {
                       return 'Please enter a valid month';
+                    }
                     return null;
                   }),
             ),
           ],
         ),
-        textf("Description",controler.description,keyboardType: TextInputType.multiline,maxLenght: 200),
+        textf("Description",controler.description,keyboardType: TextInputType.multiline,maxLength: 200),
       ]);
 }
 ExpansionTile SectionSkills(SkillsControllers controler) {
-  return SectionIfos(Icons.star,"Skills",
-      [textf("Skill",controler.skill,keyboardType: TextInputType.text,maxLenght: 10),
-        textf("Level",controler.level,keyboardType: TextInputType.text,maxLenght: 10)
+  return SectionInfos(Icons.star,"Skills",
+      [textf("Skill",controler.skill,keyboardType: TextInputType.text,maxLength: 10),
+        textf("Level",controler.level,keyboardType: TextInputType.text,maxLength: 10)
       ]);
 }
 ExpansionTile SectionLanguages(LanguageControllers controler) {
-  return SectionIfos(Icons.language,"Languages",
-      [textf("Language",controler.language,keyboardType: TextInputType.text,maxLenght: 10),
-        textf("Level",controler.level,keyboardType: TextInputType.text,maxLenght: 10),
+  return SectionInfos(Icons.language,"Languages",
+      [textf("Language",controler.language,keyboardType: TextInputType.text,maxLength: 10),
+        textf("Level",controler.level,keyboardType: TextInputType.text,maxLength: 10),
       ]);
 }
 
 ExpansionTile SectionInterests(InterestControllers controler){
-  return SectionIfos(Icons.favorite,"Interests",
-      [textf("Interest",controler.interest,keyboardType: TextInputType.text,maxLenght: 10),
+  return SectionInfos(Icons.favorite,"Interests",
+      [textf("Interest",controler.interest,keyboardType: TextInputType.text,maxLength: 10),
       ]);
 
 }
