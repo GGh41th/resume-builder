@@ -5,6 +5,7 @@ import 'package:codecraft/core/global/theme/app_colors/light_colors.dart';
 import 'package:codecraft/core/models/reponse_sucess_model.dart';
 import 'package:codecraft/core/models/signup_request_model.dart';
 import 'package:codecraft/core/services/auth_services/auth_api_services.dart';
+import 'package:codecraft/core/view_models/signup_model_view.dart';
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,7 @@ class _SignUpState extends State<SignUp> {
   late final TextEditingController _cpassword;
   bool visible = false;
   bool _checked = false;
+  SignUpViewModel signUpView = SignUpViewModel();
 
   @override
   void initState() {
@@ -284,7 +286,7 @@ class _SignUpState extends State<SignUp> {
                                 Future.delayed(
                                   const Duration(seconds: 1, milliseconds: 500),
                                       () {
-                                    Navigator.pushNamed(context, '/home');
+                                    signUpView.showLogInSheet(context);
                                   },
                                 );
 

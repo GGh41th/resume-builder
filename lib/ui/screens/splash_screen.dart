@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 2),() async{
       SharedPreferences pref=await SharedPreferences.getInstance();
       String? token=pref.getString('token');
-      print('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh    $token');
+      print(token);
       (token==null) ? Navigator.pushNamedAndRemoveUntil(context, '/enterscreen',(route) => false,):Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
     },);
 

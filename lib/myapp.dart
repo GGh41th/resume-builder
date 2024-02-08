@@ -31,8 +31,6 @@ class MyApp extends StatelessWidget {
         routes: {
           '/':(context) =>  SplashScreen(),
           '/enterscreen':(context) => EnterScreen(),
-          '/signup':(context) => SignUp(),
-          '/login':(context) => Login(),
           '/home':(context) => Home(),
           '/choose':(context) => ChooseScreen(),
           '/sections':(context) => Sections(),
