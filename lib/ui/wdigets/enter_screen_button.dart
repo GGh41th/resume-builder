@@ -14,6 +14,9 @@ class EButton extends StatelessWidget {
     return Padding(
       padding:  EdgeInsets.only(top:10,left: width*0.2,right: width*0.2),
       child: ElevatedButton(onPressed: (){
+        if (Navigator.of(context).canPop()) {
+          Navigator.of(context).pop();
+        }
         showModalBottomSheet(
           context: context,
           builder: (BuildContext context) {

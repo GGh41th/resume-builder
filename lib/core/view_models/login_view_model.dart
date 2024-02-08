@@ -5,6 +5,9 @@ import '../../ui/screens/signup.dart';
 
 class LoginViewModel{
   void showSignUpSheet(BuildContext context){
+    if (Navigator.of(context).canPop()) {
+      Navigator.of(context).pop();
+    }
     showModalBottomSheet(context: context, builder: (context) {
       return SignUp();
     },

@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 
 class SignUpViewModel{
   void showLogInSheet(BuildContext context){
+    if (Navigator.of(context).canPop()) {
+      Navigator.of(context).pop(); // Close the old modal if possible
+    }
     showModalBottomSheet(context: context, builder: (context) {
       return Login();
     },
