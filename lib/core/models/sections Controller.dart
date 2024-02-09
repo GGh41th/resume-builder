@@ -79,3 +79,16 @@ class InterestControllers extends InputControllers{
     interest = TextEditingController();
   }
 }
+
+class SettingsController extends InputControllers{
+  late TextEditingController email;
+  late TextEditingController password;
+  late TextEditingController confirmPassword;
+  SettingsController() {
+    email = TextEditingController();
+    password = TextEditingController();
+    confirmPassword = TextEditingController();
+
+  }
+}
+

@@ -16,6 +16,7 @@ class Editing extends StatefulWidget {
 }
 
 class _EditingState extends State<Editing> {
+  final editingformKey = GlobalKey<FormState>();
   late final Map<SectionType,InputControllers> controllers;
   late final Map<SectionType,ExpansionTile> sections;
   @override
@@ -43,7 +44,6 @@ class _EditingState extends State<Editing> {
     var pv=Provider.of<CVProvider>(context);
     var sectionData = pv.cv.sections;
     InputControllers a=PerInfoControllers(),b=EducationControllers();
-    final editingformKey = GlobalKey<FormState>();
     return CScreen(
       context,
       text: "back",
@@ -105,5 +105,4 @@ class _EditingState extends State<Editing> {
     );
   }
   //custimised textfield
-
 }

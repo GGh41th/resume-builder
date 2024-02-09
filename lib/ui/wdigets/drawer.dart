@@ -27,7 +27,7 @@ Drawer Cdrawer(BuildContext context){
           leading: const Icon(Icons.settings),
           title: const Text('Settings'),
           onTap: () {
-            // Navigate to Settings screen
+            Navigator.pushNamed(context, '/settings');
           },
         ),
         ListTile(

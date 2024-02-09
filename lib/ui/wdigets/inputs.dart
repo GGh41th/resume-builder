@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/global/theme/app_colors/light_colors.dart';
@@ -35,7 +36,7 @@ Padding textf(text,controller,{keyboardType =TextInputType.text,
   );
 }
 
-ExpansionTile SectionInfos(icon,title,children) {
+ExpansionTile SectionInfos(IconData icon,title,children) {
   return ExpansionTile(
     maintainState: true,
     leading: Icon(
@@ -56,28 +57,28 @@ ExpansionTile SectionInfos(icon,title,children) {
   );
 }
 
-ExpansionTile SectionPersonalInfo(PerInfoControllers controler) {
+ExpansionTile SectionPersonalInfo(PerInfoControllers controller) {
 
   return SectionInfos(Icons.person,"Personal Info",
       [Row(
         children: [
           Expanded(
-            child: textf("First Name",controler.firstName),
+            child: textf("First Name",controller.firstName),
           ),
 
           Expanded(
-            child: textf("Last Name",controler.lastName),
+            child: textf("Last Name",controller.lastName),
           ),
         ],
       ),
-        textf("Email",controler.email,keyboardType: TextInputType.emailAddress,
+        textf("Email",controller.email,keyboardType: TextInputType.emailAddress,
             validator: (value) {
-              if (!value.contains('@')) {
+              if (!EmailValidator.validate(value.trim())) {
                 return 'Please enter a valid email';
               }
               return null;
             }),
-        textf("Phone",controler.phone,keyboardType: TextInputType.phone,
+        textf("Phone",controller.phone,keyboardType: TextInputType.phone,
             maxLength: 9,
             validator: (value) {
               if (value.length != 9) {
@@ -85,11 +86,11 @@ ExpansionTile SectionPersonalInfo(PerInfoControllers controler) {
               }
               return null;
             }),
-        textf("Address",controler.address,keyboardType: TextInputType.streetAddress,maxLength: 50),
+        textf("Address",controller.address,keyboardType: TextInputType.streetAddress,maxLength: 50),
 
-        textf("City",controler.city,keyboardType: TextInputType.streetAddress,maxLength: 50),
-        textf("Country",controler.country,keyboardType: TextInputType.streetAddress,maxLength: 50),
-        textf("Postal Code",controler.postalCode,keyboardType: TextInputType.number,maxLength: 4,
+        textf("City",controller.city,keyboardType: TextInputType.streetAddress,maxLength: 50),
+        textf("Country",controller.country,keyboardType: TextInputType.streetAddress,maxLength: 50),
+        textf("Postal Code",controller.postalCode,keyboardType: TextInputType.number,maxLength: 4,
 
             validator: (value) {
               if (value.length != 4) {
@@ -100,14 +101,14 @@ ExpansionTile SectionPersonalInfo(PerInfoControllers controler) {
       ]);
 }
 
-ExpansionTile SectionEducation(EducationControllers controler) {
+ExpansionTile SectionEducation(EducationControllers controller) {
   return SectionInfos(Icons.school,"Education",
-      [textf("Degree",controler.degree,keyboardType: TextInputType.text,maxLength: 20),
-        textf("Institution",controler.institution,keyboardType: TextInputType.text,maxLength: 20),
+      [textf("Degree",controller.degree,keyboardType: TextInputType.text,maxLength: 20),
+        textf("Institution",controller.institution,keyboardType: TextInputType.text,maxLength: 20),
         Row(
           children: [
             Expanded(
-              child: textf("Start Date",controler.startYear,keyboardType: TextInputType.datetime,
+              child: textf("Start Date",controller.startYear,keyboardType: TextInputType.datetime,
                   maxLength: 4,
                   validator: (value) {
                     if (value.length != 4) {
@@ -120,7 +121,7 @@ ExpansionTile SectionEducation(EducationControllers controler) {
                   }),
             ),
             Expanded(
-              child: textf("End Date",controler.endYear,keyboardType: TextInputType.datetime,
+              child: textf("End Date",controller.endYear,keyboardType: TextInputType.datetime,
                   maxLength: 4,
                   validator: (value) {
                     if (value.length != 4) {
@@ -131,17 +132,17 @@ ExpansionTile SectionEducation(EducationControllers controler) {
             ),
           ],
         ),
-        textf("Description",controler.description,keyboardType: TextInputType.multiline,maxLength: 200),
+        textf("Description",controller.description,keyboardType: TextInputType.multiline,maxLength: 200),
       ]);
 }
-ExpansionTile SectionExperience(ExperienceControllers controler) {
+ExpansionTile SectionExperience(ExperienceControllers controller) {
   return SectionInfos(Icons.work,"Experience",
-      [textf("Title",controler.title,keyboardType: TextInputType.text,maxLength: 10),
-        textf("Company",controler.company,keyboardType: TextInputType.text,maxLength: 20),
+      [textf("Title",controller.title,keyboardType: TextInputType.text,maxLength: 10),
+        textf("Company",controller.company,keyboardType: TextInputType.text,maxLength: 20),
         Row(
           children: [
             Expanded(
-              child: textf("Start year",controler.startYear,keyboardType: TextInputType.datetime,
+              child: textf("Start year",controller.startYear,keyboardType: TextInputType.datetime,
                   maxLength: 4,
                   validator: (value) {
                     if (value.length != 4) {
@@ -155,7 +156,7 @@ ExpansionTile SectionExperience(ExperienceControllers controler) {
                   }),
             ),
             Expanded(
-              child: textf("Start month",controler.startMonth,keyboardType: TextInputType.datetime,
+              child: textf("Start month",controller.startMonth,keyboardType: TextInputType.datetime,
                   maxLength: 2,
                   validator: (value) {
                     if (value.length != 2) {
@@ -172,7 +173,7 @@ ExpansionTile SectionExperience(ExperienceControllers controler) {
         Row(
           children: [
             Expanded(
-              child: textf("End year",controler.endYear,keyboardType: TextInputType.datetime,
+              child: textf("End year",controller.endYear,keyboardType: TextInputType.datetime,
                   maxLength: 4,
                   validator: (value) {
                     if (value.length != 4) {
@@ -182,7 +183,7 @@ ExpansionTile SectionExperience(ExperienceControllers controler) {
                   }),
             ),
             Expanded(
-              child: textf("End month",controler.endMonth,keyboardType: TextInputType.datetime,
+              child: textf("End month",controller.endMonth,keyboardType: TextInputType.datetime,
                   maxLength: 2,
                   validator: (value) {
                     if (value.length != 4) {
@@ -196,27 +197,69 @@ ExpansionTile SectionExperience(ExperienceControllers controler) {
             ),
           ],
         ),
-        textf("Description",controler.description,keyboardType: TextInputType.multiline,maxLength: 200),
+        textf("Description",controller.description,keyboardType: TextInputType.multiline,maxLength: 200),
       ]);
 }
-ExpansionTile SectionSkills(SkillsControllers controler) {
+ExpansionTile SectionSkills(SkillsControllers controller) {
   return SectionInfos(Icons.star,"Skills",
-      [textf("Skill",controler.skill,keyboardType: TextInputType.text,maxLength: 10),
-        textf("Level",controler.level,keyboardType: TextInputType.text,maxLength: 10)
+      [textf("Skill",controller.skill,keyboardType: TextInputType.text,maxLength: 10),
+        textf("Level",controller.level,keyboardType: TextInputType.text,maxLength: 10)
       ]);
 }
-ExpansionTile SectionLanguages(LanguageControllers controler) {
+ExpansionTile SectionLanguages(LanguageControllers controller) {
   return SectionInfos(Icons.language,"Languages",
-      [textf("Language",controler.language,keyboardType: TextInputType.text,maxLength: 10),
-        textf("Level",controler.level,keyboardType: TextInputType.text,maxLength: 10),
+      [textf("Language",controller.language,keyboardType: TextInputType.text,maxLength: 10),
+        textf("Level",controller.level,keyboardType: TextInputType.text,maxLength: 10),
       ]);
 }
 
-ExpansionTile SectionInterests(InterestControllers controler){
+ExpansionTile SectionInterests(InterestControllers controller){
   return SectionInfos(Icons.favorite,"Interests",
-      [textf("Interest",controler.interest,keyboardType: TextInputType.text,maxLength: 10),
+      [textf("Interest",controller.interest,keyboardType: TextInputType.text,maxLength: 10),
       ]);
 
 }
+
+ExpansionTile changeEmail(SettingsController controller) {
+  return SectionInfos(Icons.email,'Change Email', [Column(
+    children: [
+      Text('here will appear the email called by the API'),
+      textf('Enter ur new email',
+          controller.email,
+          validator:(value) {
+            if (!EmailValidator.validate(value.trim())) {
+              return 'Please enter a valid email';
+            }
+            return null;
+          }
+      )
+    ],
+  )]);
+}
+
+
+ExpansionTile changePassword(SettingsController controller) {
+  return SectionInfos(Icons.password_sharp,'Change Password', [Column(
+    children: [
+      textf('Enter the new password', controller.password),
+      textf('Confirm password', controller.confirmPassword)
+    ],
+  )]);
+}
+
+
+
+ExpansionTile changePicture({required void Function()? gallery,required void Function()? camera}) {
+  return SectionInfos(Icons.account_circle,'Upload a new picture' ,[ Column(
+    children: [
+      ElevatedButton(onPressed: gallery, child: Text('Gallery Image')),
+      ElevatedButton(onPressed: camera, child: Text('Take Picture'))
+    ],
+  )]);
+}
+
+
+
+
 
 

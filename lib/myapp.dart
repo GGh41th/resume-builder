@@ -9,6 +9,7 @@ import 'package:codecraft/ui/screens/home.dart';
 import 'package:codecraft/ui/screens/login.dart';
 import 'package:codecraft/ui/screens/pdfviewer.dart';
 import 'package:codecraft/ui/screens/profile.dart';
+import 'package:codecraft/ui/screens/settings.dart';
 import 'package:codecraft/ui/screens/signup.dart';
 import 'package:codecraft/ui/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
           '/profile':(context) => Profile(),
           '/editing':(context) => Editing(),
           '/preview':(context) => PDFScreen(),
+          '/settings':(context) => Settings()
 
 
       },
