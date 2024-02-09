@@ -13,7 +13,6 @@ Scaffold CScreen(BuildContext context,  {required Widget body,String text = "men
     drawer: Cdrawer(context),
     body: Stack(
       children: [
-
         SizedBox(
           height: _height,
           width: _width,
@@ -29,22 +28,18 @@ Scaffold CScreen(BuildContext context,  {required Widget body,String text = "men
                     ],
                   ))),
         ),
-        SizedBox(
-          height: _height,
-          width: _width,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: SizedBox(
+            height:  _height* 0.1,
+            width: _width,
+            child: const FittedBox(
+              fit: BoxFit.fill,
+              child: Image(
+                image: AssetImage(cercle),
 
-              SizedBox(
-                //height:  _height* 0.15,
-                width: _width,
-                child: const Image(
-                  image: AssetImage(cercle),
-
-                ),
               ),
-            ],
+            ),
           ),
         ),
       ],

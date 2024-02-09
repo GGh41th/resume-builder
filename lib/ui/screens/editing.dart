@@ -51,13 +51,12 @@ class _EditingState extends State<Editing> {
         width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
-
           children: [
             const SizedBox(
             height: 20,
           ),
             Form(
-
+              key: editingformKey,
               child: Column(
                 children: sectionData.map((e) {
                   return Column(

@@ -15,6 +15,10 @@ class CvBrowser extends StatefulWidget {
 }
 
 class _CvBrowserState extends State<CvBrowser> {
+  Color c1=LightThemeColors.purple;
+  Color c2 = const Color.fromARGB(204, 142, 180, 220);
+  late Color col1=c1;
+  late Color col2=c1;
   List<Map<String, String>>_data = templates;
   late PageController _controller;
 
@@ -49,19 +53,22 @@ class _CvBrowserState extends State<CvBrowser> {
           width: _width * 0.12,
           child: Center(child: GestureDetector(onTap: () {
             if (_controller.page == 0) {
-              _controller.animateToPage(
-                  templates.length - 1, duration: Duration(milliseconds: 200),
-                  curve: Curves.linear);
-              Provider.of<CVProvider>(context, listen: false)
-                  .setTemplateId(templates[templates.length - 1]["id"]!);
+              setState(() {
+                col1=c2;
+              });
             }
             else {
+              if(col1==c2){
+                setState(() {
+                  col1=c1;
+                });
+              }
               int index = _controller.page!.floor() - 1;
               if (index < 0) {
                 index += templates.length;
               }
               _controller.animateToPage(
-                  index % templates.length, duration: Duration(seconds: 1),
+                  index % templates.length, duration: Duration(milliseconds: 500),
                   curve: Curves.linear);
               Provider.of<CVProvider>(context, listen: false)
                   .setTemplateId(templates[index]["id"]!);
@@ -69,7 +76,7 @@ class _CvBrowserState extends State<CvBrowser> {
           },
               child: Transform.rotate(angle: pi / 2,
                   child: Icon(Icons.arrow_drop_down_sharp, size: 40,
-                    color: LightThemeColors.purple,)))),
+                    color:col1,)))),
         ),
         Expanded(child: InteractiveViewer(
           child: Material(
@@ -89,16 +96,19 @@ class _CvBrowserState extends State<CvBrowser> {
           width: _width * 0.12,
           child: Center(child: GestureDetector(onTap: () {
             if (_controller.page == templates.length - 1) {
-              _controller.animateToPage(
-                  0, duration: Duration(milliseconds: 200), curve: Curves.linear);
-              Provider.of<CVProvider>(context, listen: false)
-                  .setTemplateId(templates[0]["id"]!);
+              print('zebi');
+             col2=c2;
             }
             else{
+              if(col2==c2){
+                setState(() {
+                  col2=c1;
+                });
+              }
             int index = _controller.page!.floor() + 1;
 
             _controller.animateToPage(
-                index % templates.length, duration: Duration(seconds: 1),
+                index % templates.length, duration: Duration(milliseconds: 500),
                 curve: Curves.linear);
                 Provider.of<CVProvider>(context, listen: false)
                     .setTemplateId(templates[index]["id"]!);
@@ -106,7 +116,7 @@ class _CvBrowserState extends State<CvBrowser> {
           },
               child: Transform.rotate(angle: pi / 2,
                   child: Icon(Icons.arrow_drop_up_sharp, size: 40,
-                      color: LightThemeColors.purple)))),
+                      color: col2)))),
         )
 
       ],

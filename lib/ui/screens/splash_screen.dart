@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
       SharedPreferences pref=await SharedPreferences.getInstance();
       String? token=pref.getString('token');
       print(token);
-      (token==null) ? Navigator.pushNamedAndRemoveUntil(context, '/enterscreen',(route) => false,):Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+      (token==null) ? Navigator.pushNamedAndRemoveUntil(context, '/home',(route) => false,):Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
     },);
 
 
