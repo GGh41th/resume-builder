@@ -1,5 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:intl_phone_picker/intl_phone_picker.dart';
 
 import '../../core/global/theme/app_colors/light_colors.dart';
 import '../../core/models/sections Controller.dart';
@@ -78,14 +80,19 @@ ExpansionTile SectionPersonalInfo(PerInfoControllers controller) {
               }
               return null;
             }),
-        textf("Phone",controller.phone,keyboardType: TextInputType.phone,
-            maxLength: 9,
-            validator: (value) {
-              if (value.length != 9) {
-                return 'Please enter a valid phone number';
-              }
-              return null;
-            }),
+        Padding(
+          padding: const  EdgeInsets.only(top: 2, right: 10, left: 10, bottom: 8),
+          child: IntlPhoneField(controller: controller.phone,decoration:  InputDecoration(
+            contentPadding: const EdgeInsets.symmetric( horizontal: 10,vertical: 10),
+            hintText: 'Phone Number',
+            counterText: "",
+            fillColor: LightThemeColors.white,
+            filled: true,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+          ),),
+        ),
         textf("Address",controller.address,keyboardType: TextInputType.streetAddress,maxLength: 50),
 
         textf("City",controller.city,keyboardType: TextInputType.streetAddress,maxLength: 50),
