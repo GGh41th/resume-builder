@@ -98,20 +98,27 @@ class _EditingState extends State<Editing> {
                     ),
                   ),
                 ),
+
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(
-                    onPressed: () {
-                      if (editingformKey.currentState!.validate()) {
-                      }
-                    },
-                    child: Row(
-                      children: [Icon(Icons.save), Text('Preview')],
-                    ))
-              ],
+            Align(
+              alignment:FractionalOffset(1,0.85),
+              child: TextButton.icon(
+                style: TextButton.styleFrom(
+
+                  backgroundColor: LightThemeColors.purple,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                ),
+                onPressed: (){
+                  if(editingformKey.currentState!.validate()) {
+                    print('zebi');
+                    //Navigator.pushNamed(context, '/preview');
+                  }
+                },
+                icon:const Text('Preview',style: TextStyle(fontSize: 20)),
+                label: const Icon(Icons.save_outlined,size: 30,),
+              ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
