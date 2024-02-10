@@ -1,6 +1,8 @@
 
+import 'package:codecraft/core/global/theme/app_colors/light_colors.dart';
 import 'package:codecraft/ui/wdigets/appbar.dart';
 import 'package:codecraft/ui/wdigets/drawer.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
@@ -9,55 +11,47 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double _width=MediaQuery.of(context).size.width;
+    final double _height=MediaQuery.of(context).size.height;
     return Scaffold(
+      backgroundColor: LightThemeColors.semiWhite,
       appBar: CAppBar(context),
       drawer: Cdrawer(context),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Wrap(
-              spacing: 18.0,
-              runSpacing: 8.0,
-              children: List.generate(
-                10,
-                    (index) => Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Container(
-                      //topright edge of the card
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12.0),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.black12,
-                            offset: Offset(0, 5),
-                            blurRadius: 10.0,
-                          ),
-                        ],
+      body: GridView.builder(gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,childAspectRatio: 1/1.4,mainAxisSpacing:10 ), itemBuilder: (context, index) {
+        return Column(
+          children: [
+            const SizedBox(height: 15,),
+            Expanded(
+              child: Container(
+                decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black12,
+                        offset: Offset(0, 5),
+                        blurRadius: 10.0,
                       ),
-                      width: 140,
-                      height: 190,
-                      child: Center(
-                        child: Text(
-                          'CV ${index + 1}',
-                          style: const TextStyle(color: Colors.black, fontSize: 20.0),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 4.0),
-                    Text(
-                      'Title ${index + 1}',
-                      style: const TextStyle(fontSize: 16.0),
-                    ),
-                  ],
+                    ],
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(topRight: Radius.circular(35))
+                ),
+                width: _width*0.35,
+                height: _height*0.3,
+                child: Center(
+                    child: Icon(CupertinoIcons.add,size: 130,color: LightThemeColors.purple,)
                 ),
               ),
             ),
-          ),
-        ),
-      ),
+            Padding(
+              padding: EdgeInsets.only(top: _height*0.001),
+              child: Text(
+                'Cv ${index + 1}',
+                style: const TextStyle(fontSize: 16.0),
+              ),
+            ),
+
+          ],
+        );
+      },),
     );
   }
 }

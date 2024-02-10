@@ -69,10 +69,15 @@ class _SettingsState extends State<Settings> {
                   ),
                 )
               ])),
+              SizedBox(
+                height: MediaQuery.of(context).size.height*0.4,
+                width: MediaQuery.of(context).size.width*0.75,
+                child: (image==null) ? null : Image.file(image!),
+              ),
               Align(
                 alignment: Alignment.bottomRight,
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 8),
+                  padding: const EdgeInsets.only(right: 8,top:8),
                   child: SizedBox(width:150,height:48,child: FilledButton(onPressed: (){}, child: Text('Save Changes'))),
                 ),
               )

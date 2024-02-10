@@ -1,11 +1,15 @@
+import 'package:codecraft/core/global/generaldata/assets_paths.dart';
 import 'package:codecraft/core/global/theme/app_colors/light_colors.dart';
 import 'package:codecraft/core/models/cvdata.dart';
 import 'package:codecraft/core/models/sections%20Controller.dart';
 import 'package:codecraft/ui/screens/screen.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/services/cvmaker.dart';
+import '../wdigets/appbar.dart';
+import '../wdigets/drawer.dart';
 import '../wdigets/inputs.dart';
 
 class Editing extends StatefulWidget {
@@ -17,8 +21,9 @@ class Editing extends StatefulWidget {
 
 class _EditingState extends State<Editing> {
   final editingformKey = GlobalKey<FormState>();
-  late final Map<SectionType,InputControllers> controllers;
-  late final Map<SectionType,ExpansionTile> sections;
+  late final Map<SectionType, InputControllers> controllers;
+  late final Map<SectionType, ExpansionTile> sections;
+
   @override
   void initState() {
     super.initState();
@@ -31,78 +36,98 @@ class _EditingState extends State<Editing> {
       SectionType.Interests: InterestControllers(),
     };
     sections = {
-      SectionType.PersonalDetails: SectionPersonalInfo(controllers[SectionType.PersonalDetails] as PerInfoControllers),
-      SectionType.Education: SectionEducation(controllers[SectionType.Education] as EducationControllers),
-      SectionType.Experience: SectionExperience(controllers[SectionType.Experience] as ExperienceControllers),
-      SectionType.Skills: SectionSkills(controllers[SectionType.Skills] as SkillsControllers),
-      SectionType.Languages: SectionLanguages(controllers[SectionType.Languages] as LanguageControllers),
-      SectionType.Interests: SectionInterests(controllers[SectionType.Interests] as InterestControllers),
+      SectionType.PersonalDetails: SectionPersonalInfo(
+          controllers[SectionType.PersonalDetails] as PerInfoControllers),
+      SectionType.Education: SectionEducation(
+        controllers[SectionType.Education] as EducationControllers,
+      ),
+      SectionType.Experience: SectionExperience(
+        controllers[SectionType.Experience] as ExperienceControllers,
+      ),
+      SectionType.Skills: SectionSkills(
+        controllers[SectionType.Skills] as SkillsControllers,
+      ),
+      SectionType.Languages: SectionLanguages(
+        controllers[SectionType.Languages] as LanguageControllers,
+      ),
+      SectionType.Interests: SectionInterests(
+        controllers[SectionType.Interests] as InterestControllers,
+      ),
     };
   }
+
   @override
   Widget build(BuildContext context) {
-    var pv=Provider.of<CVProvider>(context);
+    double _height = MediaQuery.of(context).size.height;
+    double _width = MediaQuery.of(context).size.width;
+    var pv = Provider.of<CVProvider>(context);
     var sectionData = pv.cv.sections;
-    InputControllers a=PerInfoControllers(),b=EducationControllers();
-    return CScreen(
-      context,
-      text: "back",
-      body: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
+    void updateOrder(int oldIndex, int newIndex) {
+      setState(() {
+        if (oldIndex < newIndex) {
+          newIndex--;
+        }
+        final element = sectionData.removeAt(oldIndex);
+        sectionData.insert(newIndex, element);
+      });
+    }
+
+    return Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: CAppBar(context, text: "back", elev: 4),
+        drawer: Cdrawer(context),
+        body: Stack(
           children: [
-            const SizedBox(
-            height: 20,
-          ),
-            Form(
-              key: editingformKey,
-              child: Column(
-                children: sectionData.map((e) {
-                  return Column(
-                    children: [
-                      sections[e] as ExpansionTile,
-                      const SizedBox(
-                        height: 20,
-                      ),
-                    ],
-                  );
-                }).toList(),
-              ),
-            ) ,
-
-            const SizedBox(height: 50),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                //start from the end
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-
-
-                  //text+icon button
-                  TextButton.icon(
-                    style: TextButton.styleFrom(
-
-                      backgroundColor: LightThemeColors.purple,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+            Column(
+              children: [
+                const SizedBox(
+                  height: 20,
+                ),
+                Form(
+                  key: editingformKey,
+                  child: Expanded(
+                    child: ReorderableListView(
+                      onReorder: (oldIndex, newIndex) =>
+                          updateOrder(oldIndex, newIndex),
+                      children: sectionData
+                          .map((e) => ListTile(
+                                key: ValueKey(e),
+                                title: sections[e],
+                              ))
+                          .toList(),
                     ),
-                    onPressed: (){
-                      if(editingformKey.currentState!.validate()) {
-                        Navigator.pushNamed(context, '/preview');
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(
+                    onPressed: () {
+                      if (editingformKey.currentState!.validate()) {
                       }
                     },
-                    icon:const Text('Preview',style: TextStyle(fontSize: 20)),
-                    label: const Icon(Icons.save_outlined,size: 30,),
+                    child: Row(
+                      children: [Icon(Icons.save), Text('Preview')],
+                    ))
+              ],
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: SizedBox(
+                height: _height * 0.1,
+                width: _width,
+                child: const FittedBox(
+                  fit: BoxFit.fill,
+                  child: Image(
+                    image: AssetImage(cercle),
                   ),
-                ],
+                ),
               ),
             ),
           ],
-        ),
-      ),
-    );
+        ));
   }
-  //custimised textfield
+//custimised textfield
 }

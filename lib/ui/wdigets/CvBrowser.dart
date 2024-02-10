@@ -52,26 +52,26 @@ class _CvBrowserState extends State<CvBrowser> {
           height: _height * 0.5,
           width: _width * 0.12,
           child: Center(child: GestureDetector(onTap: () {
-            if (_controller.page == 0) {
-              setState(() {
-                col1=c2;
-              });
+            if(_controller.page! ==0){
+              return;
             }
-            else {
-              if(col1==c2){
+            else{
+              if(col2==c2){
                 setState(() {
-                  col1=c1;
-                });
-              }
+                  col2=c1;
+                });}
               int index = _controller.page!.floor() - 1;
-              if (index < 0) {
-                index += templates.length;
+              if (_controller.page == 1) {
+                setState(() {
+                  col1=c2;
+                });
               }
               _controller.animateToPage(
                   index % templates.length, duration: Duration(milliseconds: 500),
                   curve: Curves.linear);
               Provider.of<CVProvider>(context, listen: false)
                   .setTemplateId(templates[index]["id"]!);
+
             }
           },
               child: Transform.rotate(angle: pi / 2,
@@ -95,24 +95,27 @@ class _CvBrowserState extends State<CvBrowser> {
           height: _height * 0.5,
           width: _width * 0.12,
           child: Center(child: GestureDetector(onTap: () {
-            if (_controller.page == templates.length - 1) {
-              print('zebi');
-             col2=c2;
+            if(_controller.page! ==templates.length - 1){
+              return ;
             }
-            else{
-              if(col2==c2){
-                setState(() {
-                  col2=c1;
-                });
-              }
-            int index = _controller.page!.floor() + 1;
-
-            _controller.animateToPage(
-                index % templates.length, duration: Duration(milliseconds: 500),
-                curve: Curves.linear);
+            else
+              {
+                if(col1==c2){
+                  setState(() {
+                    col1=c1;
+                  });}
+                int index = _controller.page!.floor() + 1;
+                if (_controller.page == templates.length - 2) {
+                  setState(() {
+                    col2=c2;
+                  });
+                }
+                _controller.animateToPage(
+                    index % templates.length, duration: Duration(milliseconds: 500),
+                    curve: Curves.linear);
                 Provider.of<CVProvider>(context, listen: false)
                     .setTemplateId(templates[index]["id"]!);
-            }
+              }
           },
               child: Transform.rotate(angle: pi / 2,
                   child: Icon(Icons.arrow_drop_up_sharp, size: 40,

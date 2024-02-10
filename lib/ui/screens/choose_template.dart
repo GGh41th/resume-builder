@@ -61,10 +61,6 @@ class _ChooseScreenState extends State<ChooseScreen> {
                         if (value!.isEmpty) {
                           return 'Please enter a title';
                         }
-                        //validate if title is one word
-                        if (value.contains(' ')) {
-                          return 'Title must be one word';
-                        }
                         return null;
                       },
                       decoration: InputDecoration(
@@ -91,7 +87,7 @@ class _ChooseScreenState extends State<ChooseScreen> {
                     if (_formKey.currentState!.validate()) {
                       // Validation passed, extract the input value and capitalize the first letter
                       String title = _text.text.trim();
-                      title = title.substring(0, 1).toUpperCase() + title.substring(1);
+                      //title = title.substring(0, 1).toUpperCase() + title.substring(1);
                       Provider.of<CVProvider>(context, listen: false).setTitle(title);
                       // Navigate to the next screen with the validated title as a parameter
                       Navigator.pushNamed(context, '/sections');

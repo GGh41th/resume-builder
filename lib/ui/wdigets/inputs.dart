@@ -59,7 +59,7 @@ ExpansionTile SectionInfos(IconData icon,title,children) {
   );
 }
 
-ExpansionTile SectionPersonalInfo(PerInfoControllers controller) {
+ExpansionTile SectionPersonalInfo(PerInfoControllers controller,{key}) {
 
   return SectionInfos(Icons.person,"Personal Info",
       [Row(
@@ -108,7 +108,7 @@ ExpansionTile SectionPersonalInfo(PerInfoControllers controller) {
       ]);
 }
 
-ExpansionTile SectionEducation(EducationControllers controller) {
+ExpansionTile SectionEducation(EducationControllers controller,{key}) {
   return SectionInfos(Icons.school,"Education",
       [textf("Degree",controller.degree,keyboardType: TextInputType.text,maxLength: 20),
         textf("Institution",controller.institution,keyboardType: TextInputType.text,maxLength: 20),
@@ -142,7 +142,7 @@ ExpansionTile SectionEducation(EducationControllers controller) {
         textf("Description",controller.description,keyboardType: TextInputType.multiline,maxLength: 200),
       ]);
 }
-ExpansionTile SectionExperience(ExperienceControllers controller) {
+ExpansionTile SectionExperience(ExperienceControllers controller,{key}) {
   return SectionInfos(Icons.work,"Experience",
       [textf("Title",controller.title,keyboardType: TextInputType.text,maxLength: 10),
         textf("Company",controller.company,keyboardType: TextInputType.text,maxLength: 20),
@@ -207,20 +207,20 @@ ExpansionTile SectionExperience(ExperienceControllers controller) {
         textf("Description",controller.description,keyboardType: TextInputType.multiline,maxLength: 200),
       ]);
 }
-ExpansionTile SectionSkills(SkillsControllers controller) {
+ExpansionTile SectionSkills(SkillsControllers controller,{key}) {
   return SectionInfos(Icons.star,"Skills",
       [textf("Skill",controller.skill,keyboardType: TextInputType.text,maxLength: 10),
         textf("Level",controller.level,keyboardType: TextInputType.text,maxLength: 10)
       ]);
 }
-ExpansionTile SectionLanguages(LanguageControllers controller) {
+ExpansionTile SectionLanguages(LanguageControllers controller,{key}) {
   return SectionInfos(Icons.language,"Languages",
       [textf("Language",controller.language,keyboardType: TextInputType.text,maxLength: 10),
         textf("Level",controller.level,keyboardType: TextInputType.text,maxLength: 10),
       ]);
 }
 
-ExpansionTile SectionInterests(InterestControllers controller){
+ExpansionTile SectionInterests(InterestControllers controller,{key}){
   return SectionInfos(Icons.favorite,"Interests",
       [textf("Interest",controller.interest,keyboardType: TextInputType.text,maxLength: 10),
       ]);
