@@ -1,12 +1,13 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:intl_phone_picker/intl_phone_picker.dart';
+import 'package:provider/provider.dart';
 
 import '../../core/global/theme/app_colors/light_colors.dart';
 import '../../core/models/sections Controller.dart';
+import '../../core/services/cvmaker.dart';
 
-Padding textf(text,controller,{keyboardType =TextInputType.text,
+Padding textf(String text,TextEditingController controller,{keyboardType =TextInputType.text,
                     maxLength,
                     validator}) {
   return Padding(
@@ -59,8 +60,9 @@ ExpansionTile SectionInfos(IconData icon,title,children) {
   );
 }
 
-ExpansionTile SectionPersonalInfo(PerInfoControllers controller,{key}) {
-
+ExpansionTile SectionPersonalInfo(BuildContext context,{key}) {
+  var pv = Provider.of<CVProvider>(context);
+  var controller = pv.cv.personalInfo.controller;
   return SectionInfos(Icons.person,"Personal Info",
       [Row(
         children: [
@@ -108,9 +110,17 @@ ExpansionTile SectionPersonalInfo(PerInfoControllers controller,{key}) {
       ]);
 }
 
-ExpansionTile SectionEducation(EducationControllers controller,{key}) {
+ExpansionTile SectionEducation(BuildContext context,{key}) {
+  var pv = Provider.of<CVProvider>(context);
+  var list = pv.cv.educations;
+  //return a column with listbuilder
   return SectionInfos(Icons.school,"Education",
-      [textf("Degree",controller.degree,keyboardType: TextInputType.text,maxLength: 20),
+  list.map((e) {
+    var controller = e.controller;
+    return Column(
+      children: [
+        SizedBox(height: 10,),
+        textf("Degree",controller.degree,keyboardType: TextInputType.text,maxLength: 20),
         textf("Institution",controller.institution,keyboardType: TextInputType.text,maxLength: 20),
         Row(
           children: [
@@ -140,91 +150,251 @@ ExpansionTile SectionEducation(EducationControllers controller,{key}) {
           ],
         ),
         textf("Description",controller.description,keyboardType: TextInputType.multiline,maxLength: 200),
-      ]);
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            (list.length>1)?IconButton(
+              onPressed: () {
+                pv.removeEducation(pv.cv.educations.indexOf(e));
+              },
+              icon: const Icon(Icons.delete),
+            ):Container(),
+            IconButton(
+              onPressed: () {
+                pv.addEducation();
+              },
+              icon: const Icon(Icons.add,),
+            ),
+            //a line
+
+          ],
+        ),
+        (list.indexOf(e)!=list.length-1 )?Divider(
+          color: LightThemeColors.purple,
+          thickness: 2,
+        ):Container(),
+      ],
+    );
+  }).toList());
+
 }
-ExpansionTile SectionExperience(ExperienceControllers controller,{key}) {
+ExpansionTile SectionExperience(BuildContext context,{key}) {
+  var pv = Provider.of<CVProvider>(context);
+  var list = pv.cv.experiences;
+  //return a column with listbuilder
   return SectionInfos(Icons.work,"Experience",
-      [textf("Title",controller.title,keyboardType: TextInputType.text,maxLength: 10),
-        textf("Company",controller.company,keyboardType: TextInputType.text,maxLength: 20),
-        Row(
+      list.map((e) {
+        var controller = e.controller;
+        return Column(
           children: [
-            Expanded(
-              child: textf("Start year",controller.startYear,keyboardType: TextInputType.datetime,
-                  maxLength: 4,
-                  validator: (value) {
-                    if (value.length != 4) {
-                      return 'Please enter a valid year';
-                    }
-                    //validate a reel year
-                    if(int.parse(value)>DateTime.now().year) {
-                      return 'Please enter a valid year';
-                    }
-                    return null;
-                  }),
+            SizedBox(height: 10,),
+            textf("Title",controller.title,keyboardType: TextInputType.text,maxLength: 10),
+            textf("Company",controller.company,keyboardType: TextInputType.text,maxLength: 20),
+            Row(
+              children: [
+                Expanded(
+                  child: textf("Start year",controller.startYear,keyboardType: TextInputType.datetime,
+                      maxLength: 4,
+                      validator: (value) {
+                        if (value.length != 4) {
+                          return 'Please enter a valid year';
+                        }
+                        if(int.parse(value)>DateTime.now().year) {
+                          return 'Please enter a valid year';
+                        }
+                        return null;
+                      }),
+                ),
+                Expanded(
+                  child: textf("Start month",controller.startMonth,keyboardType: TextInputType.datetime,
+                      maxLength: 2,
+                      validator: (value) {
+                        if (value.length != 2) {
+                          return 'Please enter a valid month';
+                        }
+                        if(int.parse(value)>12) {
+                          return 'Please enter a valid month';
+                        }
+                        return null;
+                      }),
+                ),
+              ],
             ),
-            Expanded(
-              child: textf("Start month",controller.startMonth,keyboardType: TextInputType.datetime,
-                  maxLength: 2,
-                  validator: (value) {
-                    if (value.length != 2) {
-                      return 'Please enter a valid month';
-                    }
-                    if(int.parse(value)>12) {
-                      return 'Please enter a valid month';
-                    }
-                    return null;
-                  }),
+            Row(
+              children: [
+                Expanded(
+                  child: textf("End year",controller.endYear,keyboardType: TextInputType.datetime,
+                      maxLength: 4,
+                      validator: (value) {
+                        if (value.length != 4) {
+                          return 'Please enter a valid year';
+                        }
+                        return null;
+                      }),
+                ),
+                Expanded(
+                  child: textf("End month",controller.endMonth,keyboardType: TextInputType.datetime,
+                      maxLength: 2,
+                      validator: (value) {
+                        if (value.length != 4) {
+                          return 'Please enter a valid month';
+                        }
+                        if(int.parse(value)>12) {
+                          return 'Please enter a valid month';
+                        }
+                        return null;
+                      }),
+                ),
+              ],
             ),
+            textf("Description",controller.description,keyboardType: TextInputType.multiline,maxLength: 200),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                (list.length>1)?IconButton(
+                  onPressed: () {
+                    pv.removeExperience(pv.cv.experiences.indexOf(e));
+                  },
+                  icon: const Icon(Icons.delete),
+                ):Container(),
+                IconButton(
+                  onPressed: () {
+                    pv.addExperience();
+                  },
+                  icon: const Icon(Icons.add),
+                ),
+              ],
+            ),
+            (list.indexOf(e)!=list.length-1 )?Divider(
+              color: LightThemeColors.purple,
+              thickness: 2,
+            ):Container(),
           ],
-        ),
-        Row(
-          children: [
-            Expanded(
-              child: textf("End year",controller.endYear,keyboardType: TextInputType.datetime,
-                  maxLength: 4,
-                  validator: (value) {
-                    if (value.length != 4) {
-                      return 'Please enter a valid year';
-                    }
-                    return null;
-                  }),
-            ),
-            Expanded(
-              child: textf("End month",controller.endMonth,keyboardType: TextInputType.datetime,
-                  maxLength: 2,
-                  validator: (value) {
-                    if (value.length != 4) {
-                      return 'Please enter a valid month';
-                    }
-                    if(int.parse(value)>12) {
-                      return 'Please enter a valid month';
-                    }
-                    return null;
-                  }),
-            ),
-          ],
-        ),
-        textf("Description",controller.description,keyboardType: TextInputType.multiline,maxLength: 200),
-      ]);
+        );
+      }).toList());
+
 }
-ExpansionTile SectionSkills(SkillsControllers controller,{key}) {
+ExpansionTile SectionSkills(BuildContext context,{key}) {
+  var pv = Provider.of<CVProvider>(context);
+  var list = pv.cv.skills;
+  //return a column with listbuilder
   return SectionInfos(Icons.star,"Skills",
-      [textf("Skill",controller.skill,keyboardType: TextInputType.text,maxLength: 10),
-        textf("Level",controller.level,keyboardType: TextInputType.text,maxLength: 10)
-      ]);
+      list.map((e) {
+        var controller = e.controller;
+        return Column(
+          children: [
+            SizedBox(height: 10,),
+            textf("Skill",controller.skill,keyboardType: TextInputType.text,maxLength: 10),
+            textf("Level",controller.level,keyboardType: TextInputType.text,maxLength: 10),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                (list.length>1)?IconButton(
+                  onPressed: () {
+                    pv.removeSkill(pv.cv.skills.indexOf(e));
+                  },
+                  icon: const Icon(Icons.delete),
+                ):Container(),
+                IconButton(
+                  onPressed: () {
+                    pv.addSkill();
+                  },
+                  icon: const Icon(Icons.add),
+                ),
+              ],
+            ),
+            (list.indexOf(e)!=list.length-1 )?Divider(
+              color: LightThemeColors.purple,
+              thickness: 2,
+            ):Container(),
+          ],
+        );
+      }).toList());
+
 }
-ExpansionTile SectionLanguages(LanguageControllers controller,{key}) {
+ExpansionTile SectionLanguages(BuildContext context,{key}) {
+  var pv = Provider.of<CVProvider>(context);
+  var list = pv.cv.languages;
+  //return a column with listbuilder
   return SectionInfos(Icons.language,"Languages",
-      [textf("Language",controller.language,keyboardType: TextInputType.text,maxLength: 10),
-        textf("Level",controller.level,keyboardType: TextInputType.text,maxLength: 10),
-      ]);
+      list.map((e) {
+        var controller = e.controller;
+        return Column(
+          children: [
+            SizedBox(height: 10,),
+            textf("Language",controller.language,keyboardType: TextInputType.text,maxLength: 10),
+            Slider(
+              value: controller.level.toDouble(),
+              min: 1,
+              max: 5,
+              divisions: 4,
+              onChanged: (double value) {
+                pv.cv.languages[pv.cv.languages.indexOf(e)].controller.level = value.toInt();
+                pv.notifyListeners();
+              },
+              label: (controller.level==1)?"beginner":(controller.level==2)?"intermediate":(controller.level==3)?"good":(controller.level==4)?"expert":"native",
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                (list.length>1)?IconButton(
+                  onPressed: () {
+                    pv.removeLanguage(pv.cv.languages.indexOf(e));
+                  },
+                  icon: const Icon(Icons.delete),
+                ):Container(),
+                IconButton(
+                  onPressed: () {
+                    pv.addLanguage();
+                  },
+                  icon: const Icon(Icons.add),
+                ),
+              ],
+            ),
+            (list.indexOf(e)!=list.length-1 )?Divider(
+              color: LightThemeColors.purple,
+              thickness: 2,
+            ):Container(),
+          ],
+        );
+      }).toList());
+
 }
 
-ExpansionTile SectionInterests(InterestControllers controller,{key}){
+ExpansionTile SectionInterests(BuildContext context,{key}){
+  var pv = Provider.of<CVProvider>(context);
+  var list = pv.cv.interests;
+  //return a column with listbuilder
   return SectionInfos(Icons.favorite,"Interests",
-      [textf("Interest",controller.interest,keyboardType: TextInputType.text,maxLength: 10),
-      ]);
-
+      list.map((e) {
+        var controller = e.controller;
+        return Column(
+          children: [
+            SizedBox(height: 10,),
+            textf("Interest",controller.interest,keyboardType: TextInputType.text,maxLength: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                (list.length>1)?IconButton(
+                  onPressed: () {
+                    pv.removeInterest(pv.cv.interests.indexOf(e));
+                  },
+                  icon: const Icon(Icons.delete),
+                ):Container(),
+                IconButton(
+                  onPressed: () {
+                    pv.addInterest();
+                  },
+                  icon: const Icon(Icons.add),
+                ),
+              ],
+            ),
+            (list.indexOf(e)!=list.length-1 )?Divider(
+              color: LightThemeColors.purple,
+              thickness: 2,
+            ):Container(),
+          ],
+        );
+      }).toList());
 }
 
 ExpansionTile changeEmail(SettingsController controller) {

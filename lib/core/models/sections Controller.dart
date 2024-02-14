@@ -67,10 +67,14 @@ class SkillsControllers extends InputControllers{
 }
 class LanguageControllers extends InputControllers{
   late TextEditingController language;
-  late TextEditingController level;
+   int level=1;
   LanguageControllers() {
     language = TextEditingController();
-    level = TextEditingController();
+
+  }
+  editlevel(int value) {
+    level = value;
+
   }
 }
 class InterestControllers extends InputControllers{

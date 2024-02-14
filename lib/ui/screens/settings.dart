@@ -29,60 +29,59 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return CScreen(context,
-        body: Container(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Form(
-                  child: Column(children: [
-                Padding(
-                  padding: const EdgeInsets.all(7.0),
-                  child: changeEmail(_c),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(7.0),
-                  child: changePassword(_c),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(7.0),
-                  child: changePicture(gallery: ()async {
-                    try {
-                      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-                      if(image == null) return;
-                      final imageTemp = File(image.path);
-                      setState(() => this.image = imageTemp);
-                    } on PlatformException catch(e) {
-                      print('Failed to pick image: $e');
-                    }
-
-                  },
-                  camera: ()async {
-                    try {
-                      final image = await ImagePicker().pickImage(source: ImageSource.camera);
-                      if(image == null) return;
-                      final imageTemp = File(image.path);
-                      setState(() => this.image = imageTemp);
-                    } on PlatformException catch(e) {
-                      print('Failed to pick image: $e');
-                    }
-                  }
+        body: Column(
+          //mainAxisSize: MainAxisSize.max,
+          children: [
+            Form(
+                key: _formkey,
+                child: Column(children: [
+                  Padding(
+                    padding: const EdgeInsets.all(7.0),
+                    child: changeEmail(_c),
                   ),
-                )
-              ])),
-              SizedBox(
-                height: MediaQuery.of(context).size.height*0.4,
-                width: MediaQuery.of(context).size.width*0.75,
-                child: (image==null) ? null : Image.file(image!),
+                  Padding(
+                    padding: const EdgeInsets.all(7.0),
+                    child: changePassword(_c),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(7.0),
+                    child: changePicture(gallery: ()async {
+                      try {
+                        final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+                        if(image == null) return;
+                        final imageTemp = File(image.path);
+                        setState(() => this.image = imageTemp);
+                      } on PlatformException catch(e) {
+                        print('Failed to pick image: $e');
+                      }
+
+                    },
+                        camera: ()async {
+                          try {
+                            final image = await ImagePicker().pickImage(source: ImageSource.camera);
+                            if(image == null) return;
+                            final imageTemp = File(image.path);
+                            setState(() => this.image = imageTemp);
+                          } on PlatformException catch(e) {
+                            print('Failed to pick image: $e');
+                          }
+                        }
+                    ),
+                  )
+                ])),
+            SizedBox(
+              height: MediaQuery.of(context).size.height*0.4,
+              width: MediaQuery.of(context).size.width*0.75,
+              child: (image==null) ? null : Image.file(image!),
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 8,top:8),
+                child: SizedBox(width:150,height:48,child: FilledButton(onPressed: (){}, child: Text('Save Changes'))),
               ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 8,top:8),
-                  child: SizedBox(width:150,height:48,child: FilledButton(onPressed: (){}, child: Text('Save Changes'))),
-                ),
-              )
-            ],
-          ),
+            )
+          ],
         ));
   }
 }

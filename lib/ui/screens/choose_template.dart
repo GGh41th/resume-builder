@@ -56,18 +56,39 @@ class _ChooseScreenState extends State<ChooseScreen> {
                       horizontal: _width * 0.1,
                     ),
                     child: TextFormField(
+                      maxLength: 15,
                       controller: _text,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Please enter a title';
                         }
+                        //if input is trimmed and empty, return an error message
+                        if (value.trim().isEmpty) {
+                          return 'Please enter a valid title';
+                        }
+                        //if the input is less than 3 characters, return an error message
+                        if (value.trim().length < 3) {
+                          return 'Title must be at least 3 characters long';
+                        }
                         return null;
                       },
+                      onChanged: (value) {
+
+                        //capitalize the first letter of the input
+                        _text.text = value.substring(0, 1).toUpperCase() + value.substring(1);
+                        //trim the input
+                        _text.value = TextEditingValue(
+                          text: value.trim(),
+                          selection: _text.selection,
+                        );
+                        },
                       decoration: InputDecoration(
+
                         contentPadding: const EdgeInsets.symmetric(
                             vertical: 6, horizontal: 7),
                         hintText: 'Title',
                         hintStyle: TextStyle(
+
                           color: Colors.grey.shade600.withOpacity(0.4),
                           fontSize: _height * 0.032,
                         ),
@@ -87,6 +108,9 @@ class _ChooseScreenState extends State<ChooseScreen> {
                     if (_formKey.currentState!.validate()) {
                       // Validation passed, extract the input value and capitalize the first letter
                       String title = _text.text.trim();
+                      //capitalize the first letter of the input
+                      title = title.substring(0, 1).toUpperCase() + title.substring(1);
+                      print(title);
                       //title = title.substring(0, 1).toUpperCase() + title.substring(1);
                       Provider.of<CVProvider>(context, listen: false).setTitle(title);
                       // Navigate to the next screen with the validated title as a parameter
