@@ -16,12 +16,12 @@ class Sections extends StatefulWidget {
 
 class _SectionsState extends State<Sections> {
   Map<SectionType, Map<String,dynamic>> sectionStates = {
-    SectionType.PersonalDetails: {"icon": Icons.person, "value": true,"text":"Personal Details"},
-    SectionType.Languages: {"icon": Icons.language, "value": false,"text":"Languages"},
-    SectionType.Education: {"icon": Icons.school, "value": false,"text":"Education"},
-    SectionType.Experience: {"icon": Icons.work, "value": false,"text":"Experience"},
-    SectionType.Skills: {"icon": Icons.star, "value": false,"text":"Skills"},
-    SectionType.Interests: {"icon": Icons.people, "value": false,"text":"Interests"},
+    SectionType.personalDetails: {"icon": Icons.person, "value": true,"text":"Personal Details"},
+    SectionType.languages: {"icon": Icons.language, "value": false,"text":"Languages"},
+    SectionType.education: {"icon": Icons.school, "value": false,"text":"Education"},
+    SectionType.experience: {"icon": Icons.work, "value": false,"text":"Experience"},
+    SectionType.skills: {"icon": Icons.star, "value": false,"text":"Skills"},
+    SectionType.interests: {"icon": Icons.people, "value": false,"text":"Interests"},
   };
 
   void _handleSectionToggle(SectionType section, bool value) {
@@ -37,13 +37,12 @@ class _SectionsState extends State<Sections> {
     //get keys section where value is true
     var selectedSections = sectionStates.keys.where((key) => sectionStates[key]!['value'] == true).toList();
     Provider.of<CVProvider>(context, listen: false).setSections(selectedSections);
-    print(sectionStates);
-    Navigator.push(context, MaterialPageRoute(builder: (context) =>  Editing()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) =>  const Editing()));
   }
 
   @override
   Widget build(BuildContext context) {
-    return CScreen(context,
+    return cScreen(context,
       text: "back" ,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

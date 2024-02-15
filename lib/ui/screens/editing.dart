@@ -36,16 +36,13 @@ class _EditingState extends State<Editing> {
         final element = sectionData.removeAt(oldIndex);
         sectionData.insert(newIndex, element);
       });
-      print(sectionData);
-      print ("lan : ${pv.cv.languages.length}");
-      print ("edu : ${pv.cv.educations.length}");
-      print ("exp : ${pv.cv.experiences.length}");
+
     }
 
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: CAppBar(context, text: "back", elev: 4),
-        drawer: Cdrawer(context),
+        appBar: cAppBar(context, text: "back", elev: 4),
+        drawer: cDrawer(context),
         body: Stack(
           children: [
             Column(
@@ -62,17 +59,17 @@ class _EditingState extends State<Editing> {
                       children:sectionData
                           .map((e) {
                             ExpansionTile x;
-                            if(e == SectionType.PersonalDetails) {
+                            if(e == SectionType.personalDetails) {
                           x = SectionPersonalInfo(context);
-                        } else if(e == SectionType.Languages) {
+                        } else if(e == SectionType.languages) {
                           x = SectionLanguages(context);
-                        } else if(e == SectionType.Education) {
+                        } else if(e == SectionType.education) {
                           x = SectionEducation(context);
-                        } else if(e == SectionType.Experience) {
+                        } else if(e == SectionType.experience) {
                           x = SectionExperience(context);
-                        } else if(e == SectionType.Skills) {
+                        } else if(e == SectionType.skills) {
                           x = SectionSkills(context);
-                        } else if(e == SectionType.Interests) {
+                        } else if(e == SectionType.interests) {
                           x = SectionInterests(context);
                         } else {
                           x = SectionPersonalInfo(context);
@@ -116,7 +113,7 @@ class _EditingState extends State<Editing> {
                 child: const FittedBox(
                   fit: BoxFit.fill,
                   child: Image(
-                    image: AssetImage(cercle),
+                    image: AssetImage(circles),
                   ),
                 ),
               ),

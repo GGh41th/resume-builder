@@ -119,7 +119,7 @@ ExpansionTile SectionEducation(BuildContext context,{key}) {
     var controller = e.controller;
     return Column(
       children: [
-        SizedBox(height: 10,),
+        const SizedBox(height: 10,),
         textf("Degree",controller.degree,keyboardType: TextInputType.text,maxLength: 20),
         textf("Institution",controller.institution,keyboardType: TextInputType.text,maxLength: 20),
         Row(
@@ -187,7 +187,7 @@ ExpansionTile SectionExperience(BuildContext context,{key}) {
         var controller = e.controller;
         return Column(
           children: [
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             textf("Title",controller.title,keyboardType: TextInputType.text,maxLength: 10),
             textf("Company",controller.company,keyboardType: TextInputType.text,maxLength: 20),
             Row(
@@ -283,7 +283,7 @@ ExpansionTile SectionSkills(BuildContext context,{key}) {
         var controller = e.controller;
         return Column(
           children: [
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             textf("Skill",controller.skill,keyboardType: TextInputType.text,maxLength: 10),
             textf("Level",controller.level,keyboardType: TextInputType.text,maxLength: 10),
             Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -320,7 +320,7 @@ ExpansionTile SectionLanguages(BuildContext context,{key}) {
         var controller = e.controller;
         return Column(
           children: [
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             textf("Language",controller.language,keyboardType: TextInputType.text,maxLength: 10),
             Slider(
               value: controller.level.toDouble(),
@@ -369,7 +369,7 @@ ExpansionTile SectionInterests(BuildContext context,{key}){
         var controller = e.controller;
         return Column(
           children: [
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             textf("Interest",controller.interest,keyboardType: TextInputType.text,maxLength: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -402,7 +402,7 @@ ExpansionTile changeEmail(SettingsController controller,GlobalKey<FormState> _fo
     key: _formkeymail,
     child: Column(
       children: [
-        Text('here will appear the email called by the API'),
+        const Text('here will appear the email called by the API'),
         textf('Enter ur new email',
             controller.email,
             validator:(value) {
@@ -465,8 +465,8 @@ ExpansionTile changePassword(SettingsController controller,GlobalKey<FormState> 
 ExpansionTile changePicture({required void Function()? gallery,required void Function()? camera}) {
   return SectionInfos(Icons.account_circle,'Upload a new picture' ,[ Column(
     children: [
-      ElevatedButton(onPressed: gallery, child: Text('Gallery Image')),
-      ElevatedButton(onPressed: camera, child: Text('Take Picture'))
+      ElevatedButton(onPressed: gallery, child: const Text('Gallery Image')),
+      ElevatedButton(onPressed: camera, child: const Text('Take Picture'))
     ],
   )]);
 }

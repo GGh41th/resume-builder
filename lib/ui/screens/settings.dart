@@ -17,7 +17,6 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
    final GlobalKey<FormState> _formkeymail= GlobalKey<FormState>();
    final GlobalKey<FormState> _formkeypass= GlobalKey<FormState>();
-    final GlobalKey<FormState> _formkeypic= GlobalKey<FormState>();
   late final SettingsController _c = SettingsController();
 
 
@@ -31,7 +30,7 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
-    return CScreen(context,
+    return cScreen(context,
         body: Column(
           //mainAxisSize: MainAxisSize.max,
           children: [
@@ -77,7 +76,7 @@ class _SettingsState extends State<Settings> {
                   width: MediaQuery.of(context).size.width*0.75,
                   child: Image.file(image!),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(

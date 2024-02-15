@@ -2,10 +2,7 @@ import 'dart:convert';
 
 import 'package:codecraft/core/global/generaldata/config.dart';
 import 'package:codecraft/core/models/login_request_model.dart';
-import 'package:codecraft/core/models/reponse_error_model.dart';
-import 'package:codecraft/core/models/reponse_sucess_model.dart';
 import 'package:codecraft/core/models/signup_request_model.dart';
-import 'package:codecraft/ui/screens/signup.dart';
 import 'package:http/http.dart' as http;
 
 class APIService{

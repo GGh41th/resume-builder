@@ -60,10 +60,10 @@ class CV {
 // Add constructors, etc. as needed
 }
 enum SectionType {
-  PersonalDetails,
-  Languages,
-  Education,
-  Experience,
-  Skills,
-  Interests
+  personalDetails,
+  languages,
+  education,
+  experience,
+  skills,
+  interests
 }

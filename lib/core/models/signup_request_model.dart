@@ -18,11 +18,11 @@ class SignupModel {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['firstName'] = fName;
-    _data['lastName'] = lName;
-    _data['email'] = email;
-    _data['password'] = password;
-    return _data;
+    final data = <String, dynamic>{};
+    data['firstName'] = fName;
+    data['lastName'] = lName;
+    data['email'] = email;
+    data['password'] = password;
+    return data;
   }
 }

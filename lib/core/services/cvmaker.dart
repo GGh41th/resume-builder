@@ -27,19 +27,19 @@ class CVProvider with ChangeNotifier {
     _cv.sections = list;
     _cv.personalInfo = PersonalInfo();
     for(int i = 0; i < list.length; i++){
-      if(list[i] == SectionType.Languages){
+      if(list[i] == SectionType.languages){
         _cv.languages.add(Language());
       }
-      if(list[i] == SectionType.Education){
+      if(list[i] == SectionType.education){
         _cv.educations.add(Education());
       }
-      if(list[i] == SectionType.Experience){
+      if(list[i] == SectionType.experience){
         _cv.experiences.add(Experience());
       }
-      if(list[i] == SectionType.Skills){
+      if(list[i] == SectionType.skills){
         _cv.skills.add(Skills());
       }
-      if(list[i] == SectionType.Interests){
+      if(list[i] == SectionType.interests){
         _cv.interests.add(Interests());
       }
     }

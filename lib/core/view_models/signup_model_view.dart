@@ -1,5 +1,4 @@
 import 'package:codecraft/ui/screens/login.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
@@ -9,7 +8,7 @@ class SignUpViewModel{
       Navigator.of(context).pop(); // Close the old modal if possible
     }
     showModalBottomSheet(context: context, builder: (context) {
-      return Login();
+      return const Login();
     },
       elevation: 0,
       shape: const RoundedRectangleBorder(

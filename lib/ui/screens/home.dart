@@ -11,12 +11,12 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double _width=MediaQuery.of(context).size.width;
-    final double _height=MediaQuery.of(context).size.height;
+    final double width=MediaQuery.of(context).size.width;
+    final double height=MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: LightThemeColors.semiWhite,
-      appBar: CAppBar(context),
-      drawer: Cdrawer(context),
+      appBar: cAppBar(context),
+      drawer: cDrawer(context),
       body: GridView.builder(gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,childAspectRatio: 1/1.4,mainAxisSpacing:10 ), itemBuilder: (context, index) {
         return Column(
           children: [
@@ -34,15 +34,15 @@ class Home extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.only(topRight: Radius.circular(35))
                 ),
-                width: _width*0.35,
-                height: _height*0.3,
+                width: width*0.35,
+                height: height*0.3,
                 child: Center(
                     child: Icon(CupertinoIcons.add,size: 130,color: LightThemeColors.purple,)
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: _height*0.001),
+              padding: EdgeInsets.only(top: height*0.001),
               child: Text(
                 'Cv ${index + 1}',
                 style: const TextStyle(fontSize: 16.0),

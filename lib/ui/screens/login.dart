@@ -5,7 +5,6 @@ import 'package:codecraft/core/view_models/login_view_model.dart';
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/global/generaldata/assets_paths.dart';
@@ -13,7 +12,6 @@ import '../../core/models/login_request_model.dart';
 import '../../core/models/reponse_error_model.dart';
 import '../../core/models/reponse_sucess_model.dart';
 import '../../core/services/auth_services/auth_api_services.dart';
-import '../../core/services/cvmaker.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -155,7 +153,6 @@ class _LoginState extends State<Login> {
                           '/home',
                           (route) => false,
                         );
-                        print(pref.getString('token'));
                       } else {
                         String? err;
                         var res = RErrorModel.fromJson(json.decode(x.body));
@@ -168,9 +165,9 @@ class _LoginState extends State<Login> {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Row(
                             children: [
-                              Icon(CommunityMaterialIcons.hand_okay),
+                              const Icon(CommunityMaterialIcons.hand_okay),
                               Text(err,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.white, fontSize: 20))
                             ],
                           ),
@@ -204,7 +201,7 @@ class _LoginState extends State<Login> {
                         backgroundImage: const AssetImage(google1)),
                     CircleAvatar(
                         radius: width * 0.08,
-                        backgroundImage: const AssetImage(whatsup2)),
+                        backgroundImage: const AssetImage(whatsApp2)),
                     CircleAvatar(
                         radius: width * 0.08,
                         backgroundImage: const AssetImage(facebook1)),

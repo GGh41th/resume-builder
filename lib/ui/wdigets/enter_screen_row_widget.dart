@@ -22,7 +22,7 @@ class ERow extends StatelessWidget {
           ),
           Padding(
             padding:  EdgeInsets.only(left: width*0.06),
-            child: Container(
+            child: SizedBox(
               width: width*0.6,
               child: FittedBox(
                 fit: BoxFit.fill,

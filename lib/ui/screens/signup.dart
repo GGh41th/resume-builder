@@ -9,8 +9,6 @@ import 'package:codecraft/core/view_models/signup_model_view.dart';
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-
 import '../../core/models/reponse_error_model.dart';
 
 class SignUp extends StatefulWidget {

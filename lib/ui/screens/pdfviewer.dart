@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
@@ -8,6 +7,8 @@ import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 
 class PDFScreen extends StatefulWidget {
+  const PDFScreen({super.key});
+
   @override
   _PDFScreenState createState() => _PDFScreenState();
 }
@@ -47,7 +48,7 @@ class _PDFScreenState extends State<PDFScreen> {
     } else {
       // Handle the case where the user denied the permission
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Permission denied to save PDF'),
         ),
       );
@@ -58,15 +59,15 @@ class _PDFScreenState extends State<PDFScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('PDF Viewer'),
+        title: const Text('PDF Viewer'),
       ),
       body: _pdfPath.isEmpty
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : SfPdfViewer.file(File(_pdfPath)),
       floatingActionButton: FloatingActionButton(
         onPressed: _pdfPath.isNotEmpty ? _savePdf : null,
         tooltip: 'Save PDF',
-        child: Icon(Icons.save),
+        child: const Icon(Icons.save),
       ),
     );
   }

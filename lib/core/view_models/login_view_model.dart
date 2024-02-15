@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../ui/screens/signup.dart';
 
 class LoginViewModel{
@@ -9,7 +7,7 @@ class LoginViewModel{
       Navigator.of(context).pop();
     }
     showModalBottomSheet(context: context, builder: (context) {
-      return SignUp();
+      return const SignUp();
     },
     elevation: 0,
     shape: const RoundedRectangleBorder(

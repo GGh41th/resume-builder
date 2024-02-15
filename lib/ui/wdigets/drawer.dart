@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/global/theme/app_colors/light_colors.dart';
 
-Drawer Cdrawer(BuildContext context){
+Drawer cDrawer(BuildContext context){
   return Drawer(
     backgroundColor: LightThemeColors.semiWhite,
     child: ListView(

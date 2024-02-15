@@ -13,34 +13,34 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
-    return  CScreen(
+    return  cScreen(
       context,
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            SizedBox(height: 40),
-            CircleAvatar(
+            const SizedBox(height: 40),
+            const CircleAvatar(
               radius: 70,
               backgroundImage: AssetImage('assets/jalel.png'),
             ),
-             SizedBox(height: 20),
+             const SizedBox(height: 20),
             itemProfile('Name', 'Jalel Lkadri', CupertinoIcons.person),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             itemProfile('Phone', '4 - 4 - 2', CupertinoIcons.phone),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             itemProfile('Address', 'citée , Manzeh', CupertinoIcons.location),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             itemProfile('Email', 'Jalel_Lkadricoach@gmail.com', CupertinoIcons.mail),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(15),
                   ),
-                  child: Text('Edit Profile')
+                  child: const Text('Edit Profile')
               ),
             )
           ],
@@ -55,7 +55,7 @@ class _ProfileState extends State<Profile> {
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-                offset: Offset(0, 5),
+                offset: const Offset(0, 5),
                 color: LightThemeColors.purple.withOpacity(.2),
                 spreadRadius: 2,
                 blurRadius: 10

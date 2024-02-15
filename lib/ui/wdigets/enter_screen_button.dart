@@ -1,4 +1,3 @@
-import 'package:codecraft/core/global/theme/app_colors/light_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/login.dart';
@@ -20,10 +19,11 @@ class EButton extends StatelessWidget {
         showModalBottomSheet(
           context: context,
           builder: (BuildContext context) {
-            if(route=="login")
-            return Login();
-            else
-              return SignUp();
+            if(route=="login") {
+              return const Login();
+            } else {
+              return const SignUp();
+            }
           },
           elevation: 0,
           shape: const RoundedRectangleBorder(

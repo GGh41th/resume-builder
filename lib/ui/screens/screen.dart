@@ -4,21 +4,21 @@ import 'package:flutter/material.dart';
 import '../../core/global/generaldata/assets_paths.dart';
 import '../wdigets/drawer.dart';
 
-Scaffold CScreen(BuildContext context,  {required Widget body,String text = "menu", double elevationAppBar = 4.0}) {
-  double _width = MediaQuery.of(context).size.width;
-  double _height = MediaQuery.of(context).size.height ;
+Scaffold cScreen(BuildContext context,  {required Widget body,String text = "menu", double elevationAppBar = 4.0}) {
+  double width = MediaQuery.of(context).size.width;
+  double height = MediaQuery.of(context).size.height ;
   return Scaffold(
     resizeToAvoidBottomInset: false,
-    appBar: CAppBar(context, text: text, elev: elevationAppBar),
-    drawer: Cdrawer(context),
+    appBar: cAppBar(context, text: text, elev: elevationAppBar),
+    drawer: cDrawer(context),
     body: Stack(
       children: [
         SizedBox(
-          height: _height,
-          width: _width,
+          height: height,
+          width: width,
           child: Container(
              padding: MediaQuery.of(context).viewInsets,
-            width: _width,
+            width: width,
               child: SingleChildScrollView(
                   child: Column(
                     children: [
@@ -31,12 +31,12 @@ Scaffold CScreen(BuildContext context,  {required Widget body,String text = "men
         Align(
           alignment: Alignment.bottomCenter,
           child: SizedBox(
-            height:  _height* 0.1,
-            width: _width,
+            height:  height* 0.1,
+            width: width,
             child: const FittedBox(
               fit: BoxFit.fill,
               child: Image(
-                image: AssetImage(cercle),
+                image: AssetImage(circles),
 
               ),
             ),

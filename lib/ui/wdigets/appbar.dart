@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-AppBar CAppBar(BuildContext context,{double elev=4.0,String text ="menu"}){
+AppBar cAppBar(BuildContext context,{double elev=4.0,String text ="menu"}){
   return AppBar(
     toolbarHeight: 80,
     elevation: elev,

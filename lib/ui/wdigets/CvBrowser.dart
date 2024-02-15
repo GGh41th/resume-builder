@@ -19,7 +19,7 @@ class _CvBrowserState extends State<CvBrowser> {
   Color c2 = const Color.fromARGB(204, 142, 180, 220);
   late Color col1=c1;
   late Color col2=c1;
-  List<Map<String, String>>_data = templates;
+  final List<Map<String, String>>_data = templates;
   late PageController _controller;
 
   @override
@@ -38,19 +38,19 @@ class _CvBrowserState extends State<CvBrowser> {
 
   @override
   Widget build(BuildContext context) {
-    double _width = MediaQuery
+    double width = MediaQuery
         .of(context)
         .size
         .width;
-    double _height = MediaQuery
+    double height = MediaQuery
         .of(context)
         .size
         .height;
     return Row(
       children: [
         SizedBox(
-          height: _height * 0.5,
-          width: _width * 0.12,
+          height: height * 0.5,
+          width: width * 0.12,
           child: Center(child: GestureDetector(onTap: () {
             if(_controller.page! ==0){
               return;
@@ -67,7 +67,7 @@ class _CvBrowserState extends State<CvBrowser> {
                 });
               }
               _controller.animateToPage(
-                  index % templates.length, duration: Duration(milliseconds: 500),
+                  index % templates.length, duration: const Duration(milliseconds: 500),
                   curve: Curves.linear);
               Provider.of<CVProvider>(context, listen: false)
                   .setTemplateId(templates[index]["id"]!);
@@ -92,8 +92,8 @@ class _CvBrowserState extends State<CvBrowser> {
           ),
         )),
         SizedBox(
-          height: _height * 0.5,
-          width: _width * 0.12,
+          height: height * 0.5,
+          width: width * 0.12,
           child: Center(child: GestureDetector(onTap: () {
             if(_controller.page! ==templates.length - 1){
               return ;
@@ -111,7 +111,7 @@ class _CvBrowserState extends State<CvBrowser> {
                   });
                 }
                 _controller.animateToPage(
-                    index % templates.length, duration: Duration(milliseconds: 500),
+                    index % templates.length, duration: const Duration(milliseconds: 500),
                     curve: Curves.linear);
                 Provider.of<CVProvider>(context, listen: false)
                     .setTemplateId(templates[index]["id"]!);

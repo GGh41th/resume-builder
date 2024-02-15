@@ -30,9 +30,9 @@ class _ChooseScreenState extends State<ChooseScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double _width = MediaQuery.of(context).size.width;
-    double _height = MediaQuery.of(context).size.height;
-    return CScreen(context,
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    return cScreen(context,
         body:SizedBox(
           width: double.infinity,
           child: Column(
@@ -103,18 +103,16 @@ class _ChooseScreenState extends State<ChooseScreen> {
                       String title = _text.text.trim();
                       //capitalize the first letter of the input
                       title = title.substring(0, 1).toUpperCase() + title.substring(1);
-                      print(title);
                       //title = title.substring(0, 1).toUpperCase() + title.substring(1);
                       Provider.of<CVProvider>(context, listen: false).setTitle(title);
                       // Navigate to the next screen with the validated title as a parameter
                       Navigator.pushNamed(context, '/sections');
-
-                  };
+                  }
                 },
                 style: ButtonStyle(
                     elevation: MaterialStateProperty.all(4),
                     minimumSize: MaterialStateProperty.all(
-                        Size(_width * 0.12, _height * 0.06)),
+                        Size(width * 0.12, height * 0.06)),
                     backgroundColor: MaterialStateProperty.all(
                         LightThemeColors.purple),
 
