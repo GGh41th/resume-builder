@@ -52,12 +52,14 @@ class _ChooseScreenState extends State<ChooseScreen> {
               Form(
                   key: _formKey,
                   child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: _width * 0.1,
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextFormField(
+                      textCapitalization: TextCapitalization.words,
                       maxLength: 15,
                       controller: _text,
+                      style: const TextStyle(
+                        fontSize: 25,
+                      ),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Please enter a title';
@@ -72,25 +74,16 @@ class _ChooseScreenState extends State<ChooseScreen> {
                         }
                         return null;
                       },
-                      onChanged: (value) {
 
-                        //capitalize the first letter of the input
-                        _text.text = value.substring(0, 1).toUpperCase() + value.substring(1);
-                        //trim the input
-                        _text.value = TextEditingValue(
-                          text: value.trim(),
-                          selection: _text.selection,
-                        );
-                        },
                       decoration: InputDecoration(
 
                         contentPadding: const EdgeInsets.symmetric(
-                            vertical: 6, horizontal: 7),
+                            vertical: 6, horizontal: 20),
                         hintText: 'Title',
                         hintStyle: TextStyle(
 
                           color: Colors.grey.shade600.withOpacity(0.4),
-                          fontSize: _height * 0.032,
+                          fontSize: 25,
                         ),
                         border: OutlineInputBorder(
                           borderSide:

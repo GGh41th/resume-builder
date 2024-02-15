@@ -15,15 +15,18 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-  late final GlobalKey<FormState> _formkey;
-  late SettingsController _c;
+   final GlobalKey<FormState> _formkeymail= GlobalKey<FormState>();
+   final GlobalKey<FormState> _formkeypass= GlobalKey<FormState>();
+    final GlobalKey<FormState> _formkeypic= GlobalKey<FormState>();
+  late final SettingsController _c = SettingsController();
+
+
   File? image;
 
   @override
   void initState() {
     super.initState();
-    _c = SettingsController();
-    _formkey = GlobalKey<FormState>();
+
   }
 
   @override
@@ -32,55 +35,72 @@ class _SettingsState extends State<Settings> {
         body: Column(
           //mainAxisSize: MainAxisSize.max,
           children: [
-            Form(
-                key: _formkey,
-                child: Column(children: [
-                  Padding(
-                    padding: const EdgeInsets.all(7.0),
-                    child: changeEmail(_c),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(7.0),
-                    child: changePassword(_c),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(7.0),
-                    child: changePicture(gallery: ()async {
+            Column(children: [
+              Padding(
+                padding: const EdgeInsets.all(7.0),
+                child: changeEmail(_c, _formkeymail),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(7.0),
+                child: changePassword(_c, _formkeypass),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(7.0),
+                child: changePicture(gallery: ()async {
+                  try {
+                    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+                    if(image == null) return;
+                    final imageTemp = File(image.path);
+                    setState(() => this.image = imageTemp);
+                  } on PlatformException catch(e) {
+                    print('Failed to pick image: $e');
+                  }
+
+                },
+                    camera: ()async {
                       try {
-                        final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+                        final image = await ImagePicker().pickImage(source: ImageSource.camera);
                         if(image == null) return;
                         final imageTemp = File(image.path);
                         setState(() => this.image = imageTemp);
                       } on PlatformException catch(e) {
                         print('Failed to pick image: $e');
                       }
-
-                    },
-                        camera: ()async {
-                          try {
-                            final image = await ImagePicker().pickImage(source: ImageSource.camera);
-                            if(image == null) return;
-                            final imageTemp = File(image.path);
-                            setState(() => this.image = imageTemp);
-                          } on PlatformException catch(e) {
-                            print('Failed to pick image: $e');
-                          }
-                        }
+                    }
+                ),
+              )
+            ]),
+            (image==null) ? Container() :Column(
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height*0.4,
+                  width: MediaQuery.of(context).size.width*0.75,
+                  child: Image.file(image!),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          image = null;
+                        });
+                      },
+                      child: const Text('Remove Picture'),
                     ),
-                  )
-                ])),
-            SizedBox(
-              height: MediaQuery.of(context).size.height*0.4,
-              width: MediaQuery.of(context).size.width*0.75,
-              child: (image==null) ? null : Image.file(image!),
+                    ElevatedButton(
+                      onPressed: () {
+
+                      },
+                      child: const Text('Save Picture'),)
+                  ],
+                )
+              ],
             ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: Padding(
-                padding: const EdgeInsets.only(right: 8,top:8),
-                child: SizedBox(width:150,height:48,child: FilledButton(onPressed: (){}, child: Text('Save Changes'))),
-              ),
-            )
+
           ],
         ));
   }

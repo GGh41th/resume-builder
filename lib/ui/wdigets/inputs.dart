@@ -397,31 +397,67 @@ ExpansionTile SectionInterests(BuildContext context,{key}){
       }).toList());
 }
 
-ExpansionTile changeEmail(SettingsController controller) {
-  return SectionInfos(Icons.email,'Change Email', [Column(
-    children: [
-      Text('here will appear the email called by the API'),
-      textf('Enter ur new email',
-          controller.email,
-          validator:(value) {
-            if (!EmailValidator.validate(value.trim())) {
-              return 'Please enter a valid email';
+ExpansionTile changeEmail(SettingsController controller,GlobalKey<FormState> _formkeymail) {
+  return SectionInfos(Icons.email,'Change Email', [Form(
+    key: _formkeymail,
+    child: Column(
+      children: [
+        Text('here will appear the email called by the API'),
+        textf('Enter ur new email',
+            controller.email,
+            validator:(value) {
+              if (!EmailValidator.validate(value.trim())) {
+                return 'Please enter a valid email';
+              }
+              return null;
             }
-            return null;
-          }
-      )
-    ],
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+          child: Row(
+            //satrt from the right
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  if (_formkeymail.currentState!.validate()) {
+                    // Process data.
+                  }
+                },
+                child: const Text('Submit'),
+              ),
+            ],),
+        ),
+      ],
+    ),
   )]);
 }
-
-
-ExpansionTile changePassword(SettingsController controller) {
-  return SectionInfos(Icons.password_sharp,'Change Password', [Column(
-    children: [
-      textf('Enter the new password', controller.password),
-      textf('Confirm password', controller.confirmPassword)
-    ],
-  )]);
+ExpansionTile changePassword(SettingsController controller,GlobalKey<FormState> _formkeypass) {
+  return SectionInfos(Icons.password_sharp,'Change Password', [
+    Form(
+      key: _formkeypass,
+      child: Column(
+      children: [
+        textf('Enter the new password', controller.password),
+        textf('Confirm password', controller.confirmPassword),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+          child: Row(
+            //satrt from the right
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  if (_formkeypass.currentState!.validate()) {
+                    // Process data.
+                  }
+                },
+                child: const Text('Submit'),
+              ),
+                ],
+          ),
+        ),
+    ]),)]);
 }
 
 
