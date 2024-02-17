@@ -2,10 +2,12 @@ import 'dart:math';
 
 import 'package:codecraft/core/view_models/templates_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 
 import '../../core/global/theme/app_colors/light_colors.dart';
+import '../../core/view_models/cvmaker.dart';
 
 
 class CvBrowser extends StatefulWidget {
@@ -81,11 +83,11 @@ class _CvBrowserState extends State<CvBrowser> {
                       });
                     }
                     _controller.animateToPage(
-                        index % snapshot.data!.length,
+                        index,
                         duration: const Duration(milliseconds: 500),
                         curve: Curves.linear);
-                    // Provider.of<CVProvider>(context, listen: false)
-                    //     .setTemplateId(templates[index]["id"]!);
+                    Provider.of<CVProvider>(context, listen: false)
+                     .setTemplateTitle(snapshot.data![index]["name"]!);
 
                   }
                 },
@@ -130,8 +132,10 @@ print(index);
                         index ,
                         duration: const Duration(milliseconds: 500),
                         curve: Curves.linear);
-                    // Provider.of<CVProvider>(context, listen: false)
-                    //     .setTemplateId(snapshot.data[index]["name"]!);
+                     Provider.of<CVProvider>(context, listen: false)
+
+
+                  .setTemplateTitle(snapshot.data![index]["name"]!);
                   }
                 },
                     child: Transform.rotate(angle: pi / 2,

@@ -13,10 +13,16 @@ class CVProvider with ChangeNotifier {
 
   CV get cv => _cv;
 
-  void setTemplateId(String templateId) {
-    _cv.templateId = templateId;
+  void setTemplateTitle(String templatetitle) {
+    _cv.templateTitle = templatetitle;
     notifyListeners();
   }
+
+  void setTemplateId(String templateId) {
+    _cv.Id = templateId;
+    notifyListeners();
+  }
+
 // Implement similar methods for other data fields
  void setTitle(String title) {
     _cv.title = title;

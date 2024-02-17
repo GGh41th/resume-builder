@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../../core/global/theme/app_colors/light_colors.dart';
 import '../../core/models/sections Controller.dart';
-import '../../core/services/cvmaker.dart';
+import '../../core/view_models/cvmaker.dart';
 
 Padding textf(String text,TextEditingController controller,{keyboardType =TextInputType.text,
                     maxLength,

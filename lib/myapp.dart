@@ -1,6 +1,6 @@
 import 'package:codecraft/core/global/theme/theme_data/theme_data_dark.dart';
 import 'package:codecraft/core/global/theme/theme_data/theme_data_light.dart';
-import 'package:codecraft/core/services/cvmaker.dart';
+import 'package:codecraft/core/view_models/cvmaker.dart';
 import 'package:codecraft/ui/screens/Sections.dart';
 import 'package:codecraft/ui/screens/choose_template.dart';
 import 'package:codecraft/ui/screens/editing.dart';

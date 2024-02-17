@@ -4,7 +4,7 @@ import 'package:codecraft/core/models/cvdata.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/services/cvmaker.dart';
+import '../../core/view_models/cvmaker.dart';
 import '../wdigets/appbar.dart';
 import '../wdigets/drawer.dart';
 import '../wdigets/inputs.dart';

@@ -1,8 +1,9 @@
 import 'package:codecraft/core/models/sections.dart';
 
 class CV {
-  String templateId="";
+  String templateTitle="";
   String title="";
+  String Id="";
   // List of section types
   List<SectionType> sections = [];
   PersonalInfo personalInfo = PersonalInfo();

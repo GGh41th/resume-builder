@@ -4,7 +4,7 @@ import 'package:codecraft/ui/screens/screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/services/cvmaker.dart';
+import '../../core/view_models/cvmaker.dart';
 import 'editing.dart';
 
 class Sections extends StatefulWidget {

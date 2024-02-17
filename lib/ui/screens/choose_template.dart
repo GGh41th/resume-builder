@@ -1,5 +1,5 @@
 import 'package:codecraft/core/global/theme/app_colors/light_colors.dart';
-import 'package:codecraft/core/services/cvmaker.dart';
+import 'package:codecraft/core/view_models/cvmaker.dart';
 import 'package:codecraft/ui/screens/screen.dart';
 import 'package:codecraft/ui/wdigets/CvBrowser.dart';
 import 'package:flutter/material.dart';
