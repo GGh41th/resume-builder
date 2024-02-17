@@ -140,7 +140,7 @@ class _LoginState extends State<Login> {
                   ),
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      var x = await APIService.logIn(LoginModel(
+                      var x = await ApiAuthService.logIn(LoginModel(
                           email: _email.text.trim(),
                           password: _password.text.trim()));
                       if (x.statusCode == 200) {

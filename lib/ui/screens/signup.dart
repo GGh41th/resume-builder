@@ -257,7 +257,7 @@ class _SignUpState extends State<SignUp> {
                                     'Please agree to the terms and conditions')));
                           }
                           else{
-                            var x=await APIService.signUp(SignupModel(fName: _fname.text.trim(),lName: _lname.text.trim(), email:_email.text.trim(), password: _password.text.trim()));
+                            var x=await ApiAuthService.signUp(SignupModel(fName: _fname.text.trim(),lName: _lname.text.trim(), email:_email.text.trim(), password: _password.text.trim()));
                             if(x.statusCode==200){
                                 print(x.body);
                               var res=RSuccessModel.fromJson(json.decode(x.body));

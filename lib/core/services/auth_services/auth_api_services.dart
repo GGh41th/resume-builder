@@ -5,7 +5,7 @@ import 'package:codecraft/core/models/login_request_model.dart';
 import 'package:codecraft/core/models/signup_request_model.dart';
 import 'package:http/http.dart' as http;
 
-class APIService{
+class ApiAuthService{
 
   static var client =http.Client();
   static Future<http.Response> logIn(LoginModel model) async {
