@@ -10,5 +10,6 @@ import 'myapp.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
+  await Hive.openBox('templateBox');
   runApp(MyApp());
 }

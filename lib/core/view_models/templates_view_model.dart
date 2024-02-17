@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:codecraft/core/models/templates_model.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 
@@ -11,28 +12,22 @@ import '../services/templates_services/get_png_api_service.dart';
 
 class TemplatesViewModel {
   static Future<dynamic> getNames() async {
-    var response = await ApiNames.getNames();
+    var response = await ApiNames.getNamesApi();
     if (response.statusCode == 200) {
-      return TemplatesNamesModel.fromJson(jsonDecode(response.body));
+      var decodedBody=jsonDecode(response.body);
+      List<String> names = decodedBody.cast<String>();
+      return TemplatesNamesModel.fromJson(names);
     } else {
       return RErrorModel.fromJson(jsonDecode(response.body));
     }
   }
 
-  static Future<void> fetchTemplates(List<String> names) async {
-    await Hive.openBox('templateBox');
+  static Future<void> fetchTemplates(List<String> names,Box<dynamic> box) async {
     for (var name in names) {
-      var box = Hive.box('templateBox');
       if (!box.containsKey(name)) {
         var response = await ApiPng.getPng(name);
         if (response.statusCode == 200) {
-          // Extract base64 string from the response body
-          String base64String = response.body;
-
-          // Decode base64 string into bytes
-          Uint8List templatePng = base64Decode(base64String);
-
-          // Store the decoded image bytes in the Hive box
+          Uint8List templatePng = response.bodyBytes;
           await box.put(name, templatePng);
         } else {
           var err = RErrorModel.fromJson(jsonDecode(response.body));
@@ -41,4 +36,24 @@ class TemplatesViewModel {
       }
     }
   }
-}
+  static Future<List<Map<String,dynamic>>> getTemplates() async {
+    dynamic res = await getNames();
+    if (res is RErrorModel) {
+      throw Exception('Error Fetching names');
+    } else {
+      var box = Hive.box('templateBox');
+      fetchTemplates(res.names,box);
+      // Access the existing box without reopening
+      List<Map<String,dynamic>> temp = [];
+      Map<dynamic,dynamic> m=box.toMap();
+      m.forEach((key, value) {
+        temp.add({
+          'name': key,
+          'data': value,
+        });
+      });
+      return TemplatesModel(templates: temp).templates;
+    }
+  }
+    
+  }

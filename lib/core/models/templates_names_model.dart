@@ -4,8 +4,8 @@ class TemplatesNamesModel {
   });
   late final List<String> names;
 
-  TemplatesNamesModel.fromJson(Map<String, dynamic> json){
-    names = List<String>.from(json['names']);
+  TemplatesNamesModel.fromJson(List<String>json){
+    names = json;
   }
 
   Map<String, dynamic> toJson() {
